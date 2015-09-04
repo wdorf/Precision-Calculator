@@ -58,6 +58,7 @@ double memory = 0;
 }
 
 - (IBAction)clear {
+    NSLog(@"Clearing...");
     self.isInTheMiddleOfEnteringANumber = NO;
     self.userPressedDot = NO;
     self.isEqualPressed = NO;
