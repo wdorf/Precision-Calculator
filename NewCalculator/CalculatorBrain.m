@@ -5,6 +5,7 @@
 //  Created by Diego Leal Togni on 10/3/14.
 //  Copyright (c) 2014 Gannon University. All rights reserved.
 //  modified by KW
+// modified by Team IOS1
 
 #import "CalculatorBrain.h"
 
