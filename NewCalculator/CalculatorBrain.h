@@ -4,7 +4,7 @@
 //
 //  Created by Diego Leal Togni on 10/3/14.
 //  Copyright (c) 2014 Gannon University. All rights reserved.
-// iOS 6
+// iOS 6 Omer Abufara / sai anil siruvolu / Mohamed Hassan
 
 #import <Foundation/Foundation.h>
 
