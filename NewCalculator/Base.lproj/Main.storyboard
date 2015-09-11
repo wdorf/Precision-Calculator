@@ -263,15 +263,6 @@
                                     <action selector="numPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0kP-6m-707"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0O-af-oZd">
-                                <rect key="frame" x="16" y="289" width="30" height="30"/>
-                                <state key="normal" title="0">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="numPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Trx-VC-Vu9"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iyd-re-suu">
                                 <rect key="frame" x="54" y="289" width="30" height="30"/>
                                 <state key="normal" title=".">
@@ -426,6 +417,15 @@
                                     <action selector="numPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="MMF-uM-xkb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0O-af-oZd">
+                                <rect key="frame" x="16" y="289" width="30" height="30"/>
+                                <state key="normal" title="0">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="numPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Trx-VC-Vu9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -445,5 +445,5 @@
             <point key="canvasLocation" x="243.5" y="278.5"/>
         </scene>
     </scenes>
-    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+    <color key="tintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
