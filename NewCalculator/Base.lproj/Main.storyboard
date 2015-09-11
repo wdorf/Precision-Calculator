@@ -410,6 +410,15 @@
                                     <action selector="numPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0ql-sZ-h2Q"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0O-af-oZd">
+                                <rect key="frame" x="16" y="289" width="30" height="30"/>
+                                <state key="normal" title="0">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="numPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Trx-VC-Vu9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
