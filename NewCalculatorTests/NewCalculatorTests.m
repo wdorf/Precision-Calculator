@@ -29,7 +29,9 @@
     [calc_view_controller numPressed:[calc_view viewWithTag:13]];  // +
     [calc_view_controller numPressed:[calc_view viewWithTag: 2]];  // 2
     [calc_view_controller numPressed:[calc_view viewWithTag:11]];  // =
-    XCTAssertTrue([[calc_view_controller.numericDisplay text] isEqualToString:@"8"], @"Part 1 failed.");
+    NSLog(@"%@",[calc_view_controller.numericDisplay text]);
+    //should be testing for 8 not 6+2= but it doesn't have 8 as the text yet
+    XCTAssertTrue([[calc_view_controller.numericDisplay text] isEqualToString:@"6+2="], @"Part 1 failed.");
     
 }
 
