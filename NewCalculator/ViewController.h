@@ -18,6 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblAuxiliar;
 
 @property (weak, nonatomic) IBOutlet UILabel *equationDisplay;
-
+- (IBAction)numPressed:(UIButton*)sender;
 @end
 

@@ -8,14 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-
-@interface NewCalculatorTests : XCTestCase
-
-@end
+#import "NewCalculatorTests.h"
 
 @implementation NewCalculatorTests
 
-- (void)setUp {
+- (void)setUp
+{
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
@@ -25,8 +23,15 @@
     [super tearDown];
 }
 
-- (void)testExample {
+- (void)testExample
+{
     // This is an example of a functional test case.
+    [calc_view_controller numPressed:[calc_view viewWithTag:2]];
+    [calc_view_controller numPressed:[calc_view viewWithTag:21]];
+    [calc_view_controller numPressed:[calc_view viewWithTag:9]];
+    [calc_view_controller numPressed:[calc_view viewWithTag:30]];
+//    XCTAssertTrue([[calc_view_controller.numericDisplay text] isEqualToString:@"11"], @"Part 1 failed.");
+    
     XCTAssert(YES, @"Pass");
 }
 
