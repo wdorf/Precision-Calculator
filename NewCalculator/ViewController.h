@@ -19,5 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *equationDisplay;
 
+//changed UIButton* to id
+- (IBAction)numPressed:(id)sender;
 @end
 

@@ -30,7 +30,7 @@ double memory = 0;
     return _brain;
 }
 
-- (IBAction)numPressed:(UIButton*)sender {
+- (IBAction)numPressed:(id)sender {
     
     self.isOperatorPressed = NO;
     NSString* digit = [sender currentTitle];
