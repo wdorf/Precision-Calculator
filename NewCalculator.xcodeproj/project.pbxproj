@@ -43,6 +43,7 @@
 		F11DA13619DF6896004C7F5B /* NewCalculatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewCalculatorTests.m; sourceTree = "<group>"; };
 		F11DA14019DF7A64004C7F5B /* CalculatorBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorBrain.h; sourceTree = "<group>"; };
 		F11DA14119DF7A64004C7F5B /* CalculatorBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorBrain.m; sourceTree = "<group>"; };
+		FD089D6D1BADFE9E006D3FAD /* NewCalculatorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewCalculatorTests.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +111,7 @@
 		F11DA13319DF6896004C7F5B /* NewCalculatorTests */ = {
 			isa = PBXGroup;
 			children = (
+				FD089D6D1BADFE9E006D3FAD /* NewCalculatorTests.h */,
 				F11DA13619DF6896004C7F5B /* NewCalculatorTests.m */,
 				F11DA13419DF6896004C7F5B /* Supporting Files */,
 			);
@@ -418,6 +420,7 @@
 				F11DA13C19DF6896004C7F5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F11DA13D19DF6896004C7F5B /* Build configuration list for PBXNativeTarget "NewCalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +429,7 @@
 				F11DA13F19DF6896004C7F5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

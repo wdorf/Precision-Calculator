@@ -11,6 +11,7 @@
 @interface ViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *numericDisplay;
+//@property (weak, nonatomic) IBOutlet UITextField *numericDisplay;
 @property (weak, nonatomic) IBOutlet UISwitch *fixedPrecisionMode;
 @property (weak, nonatomic) IBOutlet UILabel *lblDecimalPlates;
 @property (weak, nonatomic) IBOutlet UIStepper *controlDecimalPlaces;
@@ -19,5 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *equationDisplay;
 
+//- (IBAction)numPressed:(UIButton*)sender;
+- (IBAction)numPressed:(id)sender;
 @end
 
