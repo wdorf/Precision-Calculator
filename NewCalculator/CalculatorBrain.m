@@ -7,7 +7,6 @@
 //  modified by KW
 
 #import "CalculatorBrain.h"
-
 @interface CalculatorBrain ()
 @property (nonatomic) double operand;
 @end
@@ -34,37 +33,50 @@ double factorial(double n)
 }
 
 -(double)performOperation:(NSString *)operation firstOperand:(double)firstNumber secondOperand:(double)secondNumber{
-    double result = secondNumber;
+    __block double result = secondNumber;
+    NSString *key = operation;
     
-    if ([operation isEqualToString:@"+"]) {
-        result = firstNumber + secondNumber;
-    }else if ([@"*" isEqualToString:operation]){
-        result = firstNumber * secondNumber;
-    }else if ([operation isEqualToString:@"-"]){
-        result = firstNumber - secondNumber;
-    }else if ([operation isEqualToString:@"/"]){
-        if (secondNumber) result = firstNumber / secondNumber;
-    }else if ([operation isEqualToString:@"sin"]){
-        result = sin(secondNumber);
-    }else if([operation isEqualToString:@"cos"]){
-        result = cos(secondNumber);
-    }else if ([operation isEqualToString:@"sqrt"]){
-        result = sqrt(secondNumber);
-    }else if ([operation isEqualToString:@"+/-"]){
-        result = secondNumber*-1;
-    }else if([operation isEqualToString:@"!"]){
-        if (secondNumber>=0) result = factorial(secondNumber);
-    }else if ([operation isEqualToString:@"1/x"]){
-        if (secondNumber) result = (1/secondNumber);
-    }else if ([operation isEqualToString:@"x^2"]){
-        double base = secondNumber;
-        result = pow(base, 2);
-    }else if ([operation isEqualToString:@"x^y"]){
-        result = pow(firstNumber, secondNumber);
-    }
-    
-    NSLog(@"Calc:\nNum1: %g\nOper: %@\nNum2: %g\nResult: %g",firstNumber,operation,secondNumber,result);
-    
+    ((void (^)())@{
+                               @"+" : ^{
+                                   result = firstNumber + secondNumber;
+                               },
+                               @"*" : ^{
+                                   result = firstNumber * secondNumber;
+                               },
+                               @"-" : ^{
+                                   result = firstNumber - secondNumber;
+                               },
+                               @"/" : ^{
+                                   if (secondNumber) result = firstNumber / secondNumber;
+                               },
+                               @"sin" : ^{
+                                   result = sin(secondNumber);
+                               },
+                               @"cos" : ^{
+                                   result = cos(secondNumber);
+                               },
+                               @"sqrt" : ^{
+                                   result = sqrt(secondNumber);
+                               },
+                               @"+/-" : ^{
+                                   result = secondNumber*-1;
+                               },
+                               @"!" : ^{
+                                   if (secondNumber>=0) result = factorial(secondNumber);
+                               },
+                               @"1/x" : ^{
+                                   if (secondNumber) result = (1/secondNumber);
+                               },
+                               @"x^2" : ^{
+                                   double base = secondNumber;
+                                   result = pow(base, 2);
+                               },
+                               @"x^y" : ^{
+                                   result = firstNumber * secondNumber;
+                               },
+                               }[key] ?: ^{
+                                   NSLog(@"Calc:\nNum1: %g\nOper: %@\nNum2: %g\nResult: %g",firstNumber,operation,secondNumber,result);
+                               })();
     return result;
 }
 
