@@ -22,5 +22,7 @@
 
 //- (IBAction)numPressed:(UIButton*)sender;
 - (IBAction)numPressed:(id)sender;
+- (IBAction)equalPressed:(UIButton *)sender;
+- (IBAction)equationDigitPressed:(UIButton *)sender;
 @end
 

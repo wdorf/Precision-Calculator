@@ -78,8 +78,8 @@ double factorial(double n)
 }
 
 -(int)decimalPlaces:(NSString *)number{
-    double num = [number doubleValue];
-    double decimalPortion = num - floor(num);
+    double newNum = [number doubleValue];
+    double decimalPortion = newNum - floor(newNum);
     int decimalPlaces = (int)[[NSString stringWithFormat:@"%1.6g",decimalPortion] length] -2;
     return decimalPlaces;
 }
@@ -115,9 +115,11 @@ double factorial(double n)
     }
 }
 
+
 -(NSMutableArray *)solveEquationRecursive:(NSMutableArray *)equation{
     
     NSMutableArray* tempEquation = [NSMutableArray arrayWithArray:equation];
+
     
     BOOL isEquationSolved = NO;
     while (!isEquationSolved) {
