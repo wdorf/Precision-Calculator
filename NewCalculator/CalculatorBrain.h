@@ -12,7 +12,7 @@
 
 -(double)performOperation:(NSString *)operation firstOperand:(double)firstNumber secondOperand:(double)secondNumber;
 -(NSString *)formattedTextNumber:(NSString*)text numberOfFractionDigits:(int)precision;
--(int)decimalPlaces:(NSString *)number;
+-(int)getDecimalPlaces:(NSString *)number;
 -(void)pushEquationElement:(id)element;
 
 -(void)formatEquation:(NSString *)valueForX;

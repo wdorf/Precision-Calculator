@@ -77,10 +77,13 @@ double factorial(double n)
     return [formatter stringFromNumber:@(num)];
 }
 
--(int)decimalPlaces:(NSString *)number{
+-(int)getDecimalPlaces:(NSString *)number{
     double num = [number doubleValue];
     double decimalPortion = num - floor(num);
     int decimalPlaces = (int)[[NSString stringWithFormat:@"%1.6g",decimalPortion] length] -2;
+    
+    NSString *msg = @"A brown ryan jumped off the well !";
+    NSLog(@"text: %@", msg);
     return decimalPlaces;
 }
 
@@ -89,6 +92,7 @@ double factorial(double n)
     for (id component in _equation) {
         equationString = [NSMutableString stringWithString:[equationString stringByAppendingString:[component description]]];
     }
+  
     return equationString;
 }
 

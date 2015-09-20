@@ -97,7 +97,7 @@ double memory = 0;
     
     //update the precision, if dynamicMode is selected
     if ([self.dynamicPrecisionMode isOn]) {
-        int decimalPlates = [self.brain decimalPlaces:self.numericDisplay.text];
+        int decimalPlates = [self.brain getDecimalPlaces:self.numericDisplay.text];
         if (decimalPlates > [self.lblDecimalPlates.text intValue]) {
             self.lblDecimalPlates.text = [NSString stringWithFormat:@"%d",decimalPlates];
         }
@@ -122,7 +122,7 @@ double memory = 0;
     
     //update the precision, if dynamicMode is selected
     if ([self.dynamicPrecisionMode isOn]) {
-        int decimalPlates = [self.brain decimalPlaces:self.numericDisplay.text];
+        int decimalPlates = [self.brain getDecimalPlaces:self.numericDisplay.text];
         if (decimalPlates > [self.lblDecimalPlates.text intValue]) {
             self.lblDecimalPlates.text = [NSString stringWithFormat:@"%d",decimalPlates];
         }
@@ -157,7 +157,7 @@ double memory = 0;
     
     //update the precision, if dynamicMode is selected
     if ([self.dynamicPrecisionMode isOn]) {
-        int decimalPlates = [self.brain decimalPlaces:self.numericDisplay.text];
+        int decimalPlates = [self.brain getDecimalPlaces:self.numericDisplay.text];
         if (decimalPlates > [self.lblDecimalPlates.text intValue]) {
             self.lblDecimalPlates.text = [NSString stringWithFormat:@"%d",decimalPlates];
         }
