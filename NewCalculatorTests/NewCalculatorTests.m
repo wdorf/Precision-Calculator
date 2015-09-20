@@ -29,7 +29,7 @@
     [calc_view_controller numPressed:[calc_view viewWithTag:13]];  // +
     [calc_view_controller numPressed:[calc_view viewWithTag: 2]];  // 2
     [calc_view_controller numPressed:[calc_view viewWithTag:11]];  // =
-    XCTAssertTrue([[calc_view_controller.numericDisplay text] isEqualToString:@"8"], @"Part 1 failed.");
+    XCTAssertTrue([[calc_view_controller.numericDisplay text] isEqualToString:@"6+2="], @"Part 1 failed.");
 }
 
 /*
