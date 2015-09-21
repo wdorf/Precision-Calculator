@@ -34,40 +34,123 @@ double factorial(double n)
 }
 
 -(double)performOperation:(NSString *)operation firstOperand:(double)firstNumber secondOperand:(double)secondNumber{
+    
     double result = secondNumber;
     
-    if ([operation isEqualToString:@"+"]) {
-        result = firstNumber + secondNumber;
-    }else if ([@"*" isEqualToString:operation]){
-        result = firstNumber * secondNumber;
-    }else if ([operation isEqualToString:@"-"]){
-        result = firstNumber - secondNumber;
-    }else if ([operation isEqualToString:@"/"]){
-        if (secondNumber) result = firstNumber / secondNumber;
-    }else if ([operation isEqualToString:@"sin"]){
-        result = sin(secondNumber);
-    }else if([operation isEqualToString:@"cos"]){
-        result = cos(secondNumber);
-    }else if ([operation isEqualToString:@"sqrt"]){
-        result = sqrt(secondNumber);
-    }else if ([operation isEqualToString:@"+/-"]){
-        result = secondNumber*-1;
-    }else if([operation isEqualToString:@"!"]){
-        if (secondNumber>=0) result = factorial(secondNumber);
-    }else if ([operation isEqualToString:@"1/x"]){
-        if (secondNumber) result = (1/secondNumber);
-    }else if ([operation isEqualToString:@"x^2"]){
-        double base = secondNumber;
-        result = pow(base, 2);
-    }else if ([operation isEqualToString:@"x^y"]){
-        result = pow(firstNumber, secondNumber);
+    
+    
+    NSString *theString;
+    
+    NSArray *items = nil;
+    
+    int item = [items indexOfObjectIdenticalTo:theString];
+    
+    switch (item)
+    
+    {
+            
+        case 0:
+            
+            theString = @"+";
+            
+            result = firstNumber + secondNumber;
+            
+            break;
+            
+        case 1:
+            
+            theString = @"*";
+            
+            result = firstNumber + secondNumber;
+            
+            break;
+            
+        case 2:
+            
+            theString = @"-";
+            
+            result = firstNumber + secondNumber;
+            
+            break;
+            
+        case 3:
+            
+            theString = @"/";
+            
+            result = firstNumber + secondNumber;
+            
+            break;
+        case 4:
+            
+            theString = @"sin";
+            
+            result = firstNumber + secondNumber;
+            
+            break;
+        case 5:
+            
+            theString = @"cos";
+            
+            result = firstNumber + secondNumber;
+            
+            break;
+
+        case 6:
+            
+            theString = @"sqrt";
+            
+            result = firstNumber + secondNumber;
+            
+            break;
+
+        case 7:
+            
+            theString = @"+/-";
+            
+            result = firstNumber + secondNumber;
+            
+            break;
+            
+        case 8:
+            
+            theString = @"!";
+            
+            result = firstNumber + secondNumber;
+            
+            break;
+
+        case 9:
+            
+            theString = @"sqrt";
+            
+            result = firstNumber + secondNumber;
+            
+            break;
+  
+        case 10:
+            
+            theString = @"sqrt";
+            
+            result = firstNumber + secondNumber;
+            
+            break;
+
+        default:
+
+            
+            NSLog(@"OUT of cal");
+
+            break;
+   
     }
+
     
     NSLog(@"Calc:\nNum1: %g\nOper: %@\nNum2: %g\nResult: %g",firstNumber,operation,secondNumber,result);
+ 
     
     return result;
+    
 }
-
 -(NSString*)formattedTextNumber:(NSString*)text numberOfFractionDigits:(int)precision{
     double num = [text doubleValue];
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
