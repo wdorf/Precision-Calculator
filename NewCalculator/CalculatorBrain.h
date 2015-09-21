@@ -19,6 +19,10 @@
 -(double)solveEquation;
 -(NSString*)displayEquation;
 
+-(void)recursiveAdditionSubtraction;
+
+
+
 @property (nonatomic) NSMutableArray *equation;
 
 @property (nonatomic,readonly) double operand;

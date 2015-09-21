@@ -98,6 +98,8 @@ double factorial(double n)
     NSLog(@"%@", [self displayEquation]);
 }
 
+
+
 -(void)formatEquation:(NSString *)valueForX{
     NSNumber *number = [NSNumber numberWithDouble:[valueForX doubleValue]];
     
@@ -115,11 +117,118 @@ double factorial(double n)
     }
 }
 
+void recursiveFactorial(int i, NSMutableArray *tempEquation, CalculatorBrain *object) {
+    id currentComponent = [tempEquation objectAtIndex:i];
+    if ([currentComponent isKindOfClass:[NSNumber class]]) {
+        id nextComponent = [tempEquation objectAtIndex:i+1];
+        if ([nextComponent isKindOfClass:[NSString class]]) {
+            if ([nextComponent isEqualToString:@"!"]) {
+                double result = [object performOperation:@"!" firstOperand:0 secondOperand:[currentComponent doubleValue]];
+                [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
+                [tempEquation removeObjectAtIndex:i+1];
+                [tempEquation removeObjectAtIndex:i+1];
+            }
+        }
+    }
+}
+
+void recursiveTrigonometry(int *i_p, NSMutableArray *tempEquation, CalculatorBrain *object) {
+    id currentComponent = [tempEquation objectAtIndex:*i_p];
+    if ([currentComponent isKindOfClass:[NSNumber class]]) {
+        id previousComponent = [tempEquation objectAtIndex:*i_p-1];
+        if ([previousComponent isKindOfClass:[NSString class]]) {
+            if ([@[@"sin", @"cos"] containsObject:previousComponent]) {
+                double result = [object performOperation:previousComponent firstOperand:0 secondOperand:[currentComponent doubleValue]];
+                [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:*i_p];
+                [tempEquation removeObjectAtIndex:*i_p+1];
+                [tempEquation removeObjectAtIndex:*i_p-1];
+                (*i_p)--;
+            }
+        }
+    }
+}
+
+void recursiveSquareRoot(int *i_p, NSMutableArray *tempEquation, CalculatorBrain *object) {
+    id currentComponent = [tempEquation objectAtIndex:*i_p];
+    
+    if ([currentComponent isKindOfClass:[NSNumber class]]) {
+        id previousComponent = [tempEquation objectAtIndex:*i_p-1];
+        if ( [previousComponent isKindOfClass:[NSString class]] ) {
+            if ([previousComponent isEqualToString:@"sqrt"]) {
+                double result = [object performOperation:previousComponent firstOperand:0 secondOperand:[currentComponent doubleValue]];
+                [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:*i_p];
+                [tempEquation removeObjectAtIndex:*i_p+1];
+                [tempEquation removeObjectAtIndex:*i_p-1];
+                (*i_p)--;
+            }
+        }
+    }
+}
+
+void recursiveExponential(int i, NSMutableArray *tempEquation, CalculatorBrain *object) {
+    id currentComponent = [tempEquation objectAtIndex:i];
+    
+    if ([currentComponent isKindOfClass:[NSNumber class]]) {
+        id nextComponent = [tempEquation objectAtIndex:i+1];
+        if ([nextComponent isKindOfClass:[NSString class]]) {
+            if ([nextComponent isEqualToString:@"^"]) {
+                id nextNextComponent = [tempEquation objectAtIndex:i+2];
+                if ([nextNextComponent isKindOfClass:[NSNumber class]]) {
+                    double result = [object performOperation:@"x^y" firstOperand:[currentComponent doubleValue] secondOperand:[nextNextComponent doubleValue]];
+                    [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
+                    [tempEquation removeObjectAtIndex:i+1];
+                    [tempEquation removeObjectAtIndex:i+1];
+                    [tempEquation removeObjectAtIndex:i+1];
+                }
+            }
+        }
+    }
+}
+
+void recursiveMultiplicationDivision(int i, NSMutableArray *tempEquation, CalculatorBrain *object) {
+    id currentComponent = [tempEquation objectAtIndex:i];
+    
+    if ([currentComponent isKindOfClass:[NSNumber class]]) {
+        id nextComponent = [tempEquation objectAtIndex:i+1];
+        if ([nextComponent isKindOfClass:[NSString class]]) {
+            if ([@[@"*",@"/"] containsObject:nextComponent]) {
+                id nextNextComponent = [tempEquation objectAtIndex:i+2];
+                if ([nextNextComponent isKindOfClass:[NSNumber class]]) {
+                    double result = [object performOperation:nextComponent firstOperand:[currentComponent doubleValue] secondOperand:[nextNextComponent doubleValue]];
+                    [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
+                    [tempEquation removeObjectAtIndex:i+1];
+                    [tempEquation removeObjectAtIndex:i+1];
+                    [tempEquation removeObjectAtIndex:i+1];
+                }
+            }
+        }
+    }
+}
+
+void recursiveAdditionSubtraction(int i, NSMutableArray *tempEquation, CalculatorBrain *object) {
+    id currentComponent = [tempEquation objectAtIndex:i];
+    
+    if ([currentComponent isKindOfClass:[NSNumber class]]) {
+        id nextComponent = [tempEquation objectAtIndex:i+1];
+        if ([nextComponent isKindOfClass:[NSString class]]) {
+            if ([@[@"+",@"-"] containsObject:nextComponent]) {
+                id nextNextComponent = [tempEquation objectAtIndex:i+2];
+                if ([nextNextComponent isKindOfClass:[NSNumber class]]) {
+                    double result = [object performOperation:nextComponent firstOperand:[currentComponent doubleValue] secondOperand:[nextNextComponent doubleValue]];
+                    [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
+                    [tempEquation removeObjectAtIndex:i+1];
+                    [tempEquation removeObjectAtIndex:i+1];
+                    [tempEquation removeObjectAtIndex:i+1];
+                }
+            }
+        }
+    }
+}
+
 
 -(NSMutableArray *)solveEquationRecursive:(NSMutableArray *)equation{
     
     NSMutableArray* tempEquation = [NSMutableArray arrayWithArray:equation];
-
     
     BOOL isEquationSolved = NO;
     while (!isEquationSolved) {
@@ -201,18 +310,7 @@ double factorial(double n)
         
         //searching for factorial
         for (int i=0; i < (tempEquation.count-1); i++) {
-            id currentComponent = [tempEquation objectAtIndex:i];
-            if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                id nextComponent = [tempEquation objectAtIndex:i+1];
-                if ([nextComponent isKindOfClass:[NSString class]]) {
-                    if ([nextComponent isEqualToString:@"!"]) {
-                        double result = [self performOperation:@"!" firstOperand:0 secondOperand:[currentComponent doubleValue]];
-                        [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
-                        [tempEquation removeObjectAtIndex:i+1];
-                        [tempEquation removeObjectAtIndex:i+1];
-                    }
-                }
-            }
+            recursiveFactorial(i, tempEquation, self);
         }
         
         //add * signal where necessary
@@ -229,19 +327,7 @@ double factorial(double n)
         
         //searching for trigonometric functions
         for (int i=1; i < tempEquation.count; i++) {
-            id currentComponent = [tempEquation objectAtIndex:i];
-            if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                id previousComponent = [tempEquation objectAtIndex:i-1];
-                if ([previousComponent isKindOfClass:[NSString class]]) {
-                    if ([@[@"sin", @"cos"] containsObject:previousComponent]) {
-                        double result = [self performOperation:previousComponent firstOperand:0 secondOperand:[currentComponent doubleValue]];
-                        [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
-                        [tempEquation removeObjectAtIndex:i+1];
-                        [tempEquation removeObjectAtIndex:i-1];
-                        i--;
-                    }
-                }
-            }
+            recursiveTrigonometry(&i, tempEquation, self);
         }
         
         //add * signal where necessary
@@ -256,23 +342,9 @@ double factorial(double n)
             }
         }
         
-        
         //searching for square root
         for (int i=1; i < tempEquation.count; i++) {
-            id currentComponent = [tempEquation objectAtIndex:i];
-            
-            if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                id previousComponent = [tempEquation objectAtIndex:i-1];
-                if ( [previousComponent isKindOfClass:[NSString class]] ) {
-                    if ([previousComponent isEqualToString:@"sqrt"]) {
-                        double result = [self performOperation:previousComponent firstOperand:0 secondOperand:[currentComponent doubleValue]];
-                        [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
-                        [tempEquation removeObjectAtIndex:i+1];
-                        [tempEquation removeObjectAtIndex:i-1];
-                        i--;
-                    }
-                }
-            }
+            recursiveSquareRoot(&i, tempEquation, self);
         }
         
         //add * signal where necessary
@@ -289,23 +361,7 @@ double factorial(double n)
         
         //searching for exponential
         for (int i=0; i < (tempEquation.count-1); i++) {
-            id currentComponent = [tempEquation objectAtIndex:i];
-            
-            if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                id nextComponent = [tempEquation objectAtIndex:i+1];
-                if ([nextComponent isKindOfClass:[NSString class]]) {
-                    if ([nextComponent isEqualToString:@"^"]) {
-                        id nextNextComponent = [tempEquation objectAtIndex:i+2];
-                        if ([nextNextComponent isKindOfClass:[NSNumber class]]) {
-                            double result = [self performOperation:@"x^y" firstOperand:[currentComponent doubleValue] secondOperand:[nextNextComponent doubleValue]];
-                            [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
-                            [tempEquation removeObjectAtIndex:i+1];
-                            [tempEquation removeObjectAtIndex:i+1];
-                            [tempEquation removeObjectAtIndex:i+1];
-                        }
-                    }
-                }
-            }
+            recursiveExponential(i, tempEquation, self);
         }
         
         //add * signal where necessary
@@ -322,23 +378,7 @@ double factorial(double n)
         
         //searching for multiplication and division
         for (int i=0; i < (tempEquation.count-1); i++) {
-            id currentComponent = [tempEquation objectAtIndex:i];
-            
-            if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                id nextComponent = [tempEquation objectAtIndex:i+1];
-                if ([nextComponent isKindOfClass:[NSString class]]) {
-                    if ([@[@"*",@"/"] containsObject:nextComponent]) {
-                        id nextNextComponent = [tempEquation objectAtIndex:i+2];
-                        if ([nextNextComponent isKindOfClass:[NSNumber class]]) {
-                            double result = [self performOperation:nextComponent firstOperand:[currentComponent doubleValue] secondOperand:[nextNextComponent doubleValue]];
-                            [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
-                            [tempEquation removeObjectAtIndex:i+1];
-                            [tempEquation removeObjectAtIndex:i+1];
-                            [tempEquation removeObjectAtIndex:i+1];
-                        }
-                    }
-                }
-            }
+            recursiveMultiplicationDivision(i, tempEquation, self);
         }
         
         //add * signal where necessary
@@ -355,23 +395,7 @@ double factorial(double n)
         
         //searching for addition and subtraction
         for (int i=0; i < (tempEquation.count-1); i++) {
-            id currentComponent = [tempEquation objectAtIndex:i];
-            
-            if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                id nextComponent = [tempEquation objectAtIndex:i+1];
-                if ([nextComponent isKindOfClass:[NSString class]]) {
-                    if ([@[@"+",@"-"] containsObject:nextComponent]) {
-                        id nextNextComponent = [tempEquation objectAtIndex:i+2];
-                        if ([nextNextComponent isKindOfClass:[NSNumber class]]) {
-                            double result = [self performOperation:nextComponent firstOperand:[currentComponent doubleValue] secondOperand:[nextNextComponent doubleValue]];
-                            [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
-                            [tempEquation removeObjectAtIndex:i+1];
-                            [tempEquation removeObjectAtIndex:i+1];
-                            [tempEquation removeObjectAtIndex:i+1];
-                        }
-                    }
-                }
-            }
+            recursiveAdditionSubtraction(i, tempEquation, self);
         }
         
         if (tempEquation.count==1) {
@@ -381,6 +405,7 @@ double factorial(double n)
     
     return tempEquation;
 }
+
 
 -(double)solveEquation{
     return [[[self solveEquationRecursive:_equation] firstObject] doubleValue];

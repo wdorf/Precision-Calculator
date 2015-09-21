@@ -188,6 +188,9 @@ double memory = 0;
 }
 
 - (IBAction)memoryManager:(UIButton *)sender {
+    
+    
+    
     if ([[sender currentTitle] isEqualToString:@"M+"]) {
         memory += [self.numericDisplay.text doubleValue];
         self.isInTheMiddleOfEnteringANumber = NO;
