@@ -426,6 +426,7 @@ void recursiveAdditionSubtraction(int i, NSMutableArray *tempEquation, Calculato
                 }
             }
         }
+        */
         
         //searching for square root
         for (int i=1; i < tempEquation.count; i++) {
