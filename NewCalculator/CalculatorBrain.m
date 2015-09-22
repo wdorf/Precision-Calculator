@@ -296,7 +296,7 @@ double factorial(double n)
                 }
             }
         }
-        
+        /*
         //add * signal where necessary
         for (int i=0; i < (tempEquation.count-1); i++) {
             id currentComponent = [tempEquation objectAtIndex:i];
@@ -308,6 +308,7 @@ double factorial(double n)
                 }
             }
         }
+        */
         
         //searching for trigonometric functions
         for (int i=1; i < tempEquation.count; i++) {
@@ -325,7 +326,7 @@ double factorial(double n)
                 }
             }
         }
-        
+        /*
         //add * signal where necessary
         for (int i=0; i < (tempEquation.count-1); i++) {
             id currentComponent = [tempEquation objectAtIndex:i];
@@ -337,7 +338,7 @@ double factorial(double n)
                 }
             }
         }
-        
+        */
         
         //searching for square root
         for (int i=1; i < tempEquation.count; i++) {
@@ -357,6 +358,7 @@ double factorial(double n)
             }
         }
         
+        /*
         //add * signal where necessary
         for (int i=0; i < (tempEquation.count-1); i++) {
             id currentComponent = [tempEquation objectAtIndex:i];
@@ -368,6 +370,7 @@ double factorial(double n)
                 }
             }
         }
+        */
         
         //searching for exponential
         for (int i=0; i < (tempEquation.count-1); i++) {
@@ -389,7 +392,7 @@ double factorial(double n)
                 }
             }
         }
-        
+        /*
         //add * signal where necessary
         for (int i=0; i < (tempEquation.count-1); i++) {
             id currentComponent = [tempEquation objectAtIndex:i];
@@ -401,6 +404,7 @@ double factorial(double n)
                 }
             }
         }
+        */
         
         //searching for multiplication and division
         for (int i=0; i < (tempEquation.count-1); i++) {
@@ -422,7 +426,7 @@ double factorial(double n)
                 }
             }
         }
-        
+        /*
         //add * signal where necessary
         for (int i=0; i < (tempEquation.count-1); i++) {
             id currentComponent = [tempEquation objectAtIndex:i];
@@ -434,6 +438,7 @@ double factorial(double n)
                 }
             }
         }
+        */
         
         //searching for addition and subtraction
         for (int i=0; i < (tempEquation.count-1); i++) {
