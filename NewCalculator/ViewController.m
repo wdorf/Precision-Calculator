@@ -143,7 +143,10 @@ double memory = 0;
 - (IBAction)equalPressed:(UIButton *)sender {
     
     if ([sender.currentTitle isEqualToString:@"="]) {
-        [self equationDigitPressed:sender];
+        if (![[self.brain.equation lastObject] isKindOfClass:[NSNumber class]]){
+            self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:self.numericDisplay.text];
+            [self.brain pushEquationElement:[NSNumber numberWithDouble:[self.numericDisplay.text doubleValue]]];
+        }
     }
     
     //round the value if some precisionMode is selected
@@ -247,53 +250,73 @@ double memory = 0;
 }
 
 - (IBAction)equationDigitPressed:(UIButton *)sender {
-    if ([[sender currentTitle] isEqualToString:@"1/x"]) {
-        self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:@"1/"];
-        self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:self.numericDisplay.text];
-        [self.brain pushEquationElement:[NSNumber numberWithDouble:1]];
-        [self.brain pushEquationElement:@"/"];
-        [self.brain pushEquationElement:[NSNumber numberWithDouble:[self.numericDisplay.text doubleValue]]];
-    }else if ([[sender currentTitle] isEqualToString:@"x^2"]){
-        if (!self.isEqualPressed) self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:self.numericDisplay.text];
-        self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:@"^2"];
-        if (!self.isEqualPressed) [self.brain pushEquationElement:[NSNumber numberWithDouble:[self.numericDisplay.text doubleValue]]];
-        [self.brain pushEquationElement:@"^"];
-        [self.brain pushEquationElement:[NSNumber numberWithDouble:2]];
-    }else if ([[sender currentTitle] isEqualToString:@"x^y"]){
-        if (!self.isEqualPressed) self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:self.numericDisplay.text];
-        self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:@"^"];
-        if (!self.isEqualPressed) [self.brain pushEquationElement:[NSNumber numberWithDouble:[self.numericDisplay.text doubleValue]]];
-        [self.brain pushEquationElement:@"^"];
-    }else if ([@[@"sin",@"cos",@"sqrt"] containsObject:[sender currentTitle]]){
+    
+    if ([@[@"sin",@"cos",@"sqrt"] containsObject:[sender currentTitle]]){
         self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:sender.currentTitle];
         self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:self.numericDisplay.text];
         [self.brain pushEquationElement:sender.currentTitle];
         [self.brain pushEquationElement:[NSNumber numberWithDouble:[self.numericDisplay.text doubleValue]]];
-    }else if ([@[@"*",@"/",@"+",@"-"] containsObject:[sender currentTitle]]){
-        if (!self.isEqualPressed) self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:self.numericDisplay.text];
-        self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:sender.currentTitle];
-        if (!self.isEqualPressed) [self.brain pushEquationElement:[NSNumber numberWithDouble:[self.numericDisplay.text doubleValue]]];
-        [self.brain pushEquationElement:sender.currentTitle];
-    }else if([@[@"x",@"("] containsObject:[sender currentTitle]]){
-        self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:[sender currentTitle]];
-        [self.brain pushEquationElement:sender.currentTitle];
-        if ([sender.currentTitle isEqualToString:@"x"])self.isEqualPressed = YES;
-    }else if([sender.currentTitle isEqualToString:@"="]){
-        if (![[self.brain.equation lastObject] isKindOfClass:[NSNumber class]]){
-            self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:self.numericDisplay.text];
-            [self.brain pushEquationElement:[NSNumber numberWithDouble:[self.numericDisplay.text doubleValue]]];
-        }
-    }else if ([[sender currentTitle] isEqualToString:@"del"]){
-        [self.brain.equation removeLastObject];
-        self.equationDisplay.text = self.brain.displayEquation;
-        self.isInTheMiddleOfEnteringANumber = NO;
-        self.isEqualPressed = YES;
-    }else {
+    }
+    
+    else if ([@[@"*",@"/",@"+",@"-"] containsObject:[sender currentTitle]]){
         if (!self.isEqualPressed) self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:self.numericDisplay.text];
         self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:sender.currentTitle];
         if (!self.isEqualPressed) [self.brain pushEquationElement:[NSNumber numberWithDouble:[self.numericDisplay.text doubleValue]]];
         [self.brain pushEquationElement:sender.currentTitle];
     }
+    
+    else if([@[@"x",@"("] containsObject:[sender currentTitle]]){
+        self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:[sender currentTitle]];
+        [self.brain pushEquationElement:sender.currentTitle];
+        if ([sender.currentTitle isEqualToString:@"x"])self.isEqualPressed = YES;
+    }
+    
+    else {
+        if (!self.isEqualPressed) self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:self.numericDisplay.text];
+        self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:sender.currentTitle];
+        if (!self.isEqualPressed) [self.brain pushEquationElement:[NSNumber numberWithDouble:[self.numericDisplay.text doubleValue]]];
+        [self.brain pushEquationElement:sender.currentTitle];
+    }
+    
+}
+
+- (IBAction)inversePressed:(UIButton *)sender {
+    
+    self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:@"1/"];
+    self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:self.numericDisplay.text];
+    [self.brain pushEquationElement:[NSNumber numberWithDouble:1]];
+    [self.brain pushEquationElement:@"/"];
+    [self.brain pushEquationElement:[NSNumber numberWithDouble:[self.numericDisplay.text doubleValue]]];
+}
+
+- (IBAction)powerActionPressed:(UIButton *)sender {
+
+    if (!self.isEqualPressed)
+    {
+        self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:self.numericDisplay.text];
+    }
+    if ([[sender currentTitle] isEqualToString:@"x^2"]){
+        self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:@"^2"];
+        if (!self.isEqualPressed) [self.brain pushEquationElement:[NSNumber numberWithDouble:[self.numericDisplay.text doubleValue]]];
+        [self.brain pushEquationElement:@"^"];
+        [self.brain pushEquationElement:[NSNumber numberWithDouble:2]];
+    }
+    
+    else if ([[sender currentTitle] isEqualToString:@"x^y"]){
+        self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:@"^"];
+        if (!self.isEqualPressed) [self.brain pushEquationElement:[NSNumber numberWithDouble:[self.numericDisplay.text doubleValue]]];
+        [self.brain pushEquationElement:@"^"];
+    }
+    
+}
+
+- (IBAction)delPressed:(UIButton *)sender {
+    
+    [self.brain.equation removeLastObject];
+    self.equationDisplay.text = self.brain.displayEquation;
+    self.isInTheMiddleOfEnteringANumber = NO;
+    self.isEqualPressed = YES;
+    
 }
 
 - (IBAction)atributeValueForX:(UIButton *)sender {
