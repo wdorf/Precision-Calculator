@@ -188,27 +188,34 @@ double memory = 0;
 }
 
 - (IBAction)memoryManager:(UIButton *)sender {
-    if ([[sender currentTitle] isEqualToString:@"M+"]) {
+    NSString *key1 = [sender currentTitle];
+    ((void (^)())@{
+                   @"M+" : ^{
         memory += [self.numericDisplay.text doubleValue];
         self.isInTheMiddleOfEnteringANumber = NO;
         self.userPressedDot = NO;
         self.isEqualPressed = NO;
         self.isOperatorPressed = NO;
-    }else if ([[sender currentTitle]isEqualToString:@"M-"]){
+    },
+                   @"M-" : ^{
         memory -= [self.numericDisplay.text doubleValue];
         self.isInTheMiddleOfEnteringANumber = NO;
         self.userPressedDot = NO;
         self.isEqualPressed = NO;
         self.isOperatorPressed = NO;
-    }else if ([[sender currentTitle] isEqualToString:@"MR"]){
+    },
+                   @"MR" : ^{
         self.numericDisplay.text = [NSString stringWithFormat:@"%1.6g",memory];
         self.isInTheMiddleOfEnteringANumber = NO;
         self.userPressedDot = NO;
         self.isEqualPressed = NO;
         self.isOperatorPressed = NO;
-    }else if ([[sender currentTitle] isEqualToString:@"MC"]){
+    },
+                   @"MC" : ^{
         memory = 0;
-    }
+    },
+                   }[key1] ?: ^{
+                   })();
 }
 
 - (IBAction)chgFixedPrecisionMode:(UISwitch *)sender {
