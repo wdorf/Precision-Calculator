@@ -19,9 +19,6 @@
 -(double)solveEquation;
 -(NSString*)displayEquation;
 
--(void)recursiveAdditionSubtraction;
-
-
 
 @property (nonatomic) NSMutableArray *equation;
 
