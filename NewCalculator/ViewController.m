@@ -110,7 +110,7 @@ double memory = 0;
     
 }
 
-- (IBAction)quickOperationPressed:(UIButton *)sender {
+- (IBAction)supportModels:(UIButton *)sender {
     //round the value if fixedPrecisionMode is selected
     if (([self.fixedPrecisionMode isOn]))
     {
