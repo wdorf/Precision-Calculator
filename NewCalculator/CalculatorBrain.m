@@ -9,7 +9,7 @@
 #import "CalculatorBrain.h"
 
 @interface CalculatorBrain ()
-@property (nonatomic) double operand;
+
 @end
 
 
