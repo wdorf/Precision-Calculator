@@ -9,7 +9,7 @@
 #import "CalculatorBrain.h"
 
 @interface CalculatorBrain ()
-@property (nonatomic) double operand;
+//@property (nonatomic) double operand;
 @end
 
 
@@ -36,6 +36,8 @@ double factorial(double n)
 -(double)performOperation:(NSString *)operation firstOperand:(double)firstNumber secondOperand:(double)secondNumber{
     double result = secondNumber;
     
+    
+   
     if ([operation isEqualToString:@"+"]) {
         result = firstNumber + secondNumber;
     }else if ([@"*" isEqualToString:operation]){
