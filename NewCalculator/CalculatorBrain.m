@@ -36,33 +36,51 @@ double factorial(double n)
 -(double)performOperation:(NSString *)operation firstOperand:(double)firstNumber secondOperand:(double)secondNumber{
     double result = secondNumber;
     
-    
-   
-    if ([operation isEqualToString:@"+"]) {
-        result = firstNumber + secondNumber;
-    }else if ([@"*" isEqualToString:operation]){
-        result = firstNumber * secondNumber;
-    }else if ([operation isEqualToString:@"-"]){
-        result = firstNumber - secondNumber;
-    }else if ([operation isEqualToString:@"/"]){
-        if (secondNumber) result = firstNumber / secondNumber;
-    }else if ([operation isEqualToString:@"sin"]){
-        result = sin(secondNumber);
-    }else if([operation isEqualToString:@"cos"]){
-        result = cos(secondNumber);
-    }else if ([operation isEqualToString:@"sqrt"]){
-        result = sqrt(secondNumber);
-    }else if ([operation isEqualToString:@"+/-"]){
-        result = secondNumber*-1;
-    }else if([operation isEqualToString:@"!"]){
-        if (secondNumber>=0) result = factorial(secondNumber);
-    }else if ([operation isEqualToString:@"1/x"]){
-        if (secondNumber) result = (1/secondNumber);
-    }else if ([operation isEqualToString:@"x^2"]){
-        double base = secondNumber;
-        result = pow(base, 2);
-    }else if ([operation isEqualToString:@"x^y"]){
-        result = pow(firstNumber, secondNumber);
+    NSString *theString = operation;   // The one we want to switch on
+    NSArray *items = @[@"+", @"*", @"-", @"/", @"sin", @"cos", @"sqrt", @"+/-", @"!", @"1/x", @"x^2", @"x^y"];
+    long item = [items indexOfObject:theString];
+    switch (item) {
+        case 0:
+            result = firstNumber + secondNumber;
+            NSLog(@"Addition");
+            break;
+        case 1:
+            result = firstNumber * secondNumber;
+            NSLog(@"Multiply");
+            break;
+        case 2:
+            result = firstNumber - secondNumber;
+            break;
+        case 3:
+            if (secondNumber) result = firstNumber / secondNumber;
+            break;
+        case 4:
+            result = sin(secondNumber);
+            break;
+        case 5:
+            result = cos(secondNumber);
+            break;
+        case 6:
+            result = sqrt(secondNumber);
+            break;
+        case 7:
+            result = secondNumber*-1;
+            break;
+        case 8:
+            if (secondNumber>=0) result = factorial(secondNumber);
+            break;
+        case 9:
+            if (secondNumber) result = (1/secondNumber);
+            break;
+        case 10:
+            //double base = secondNumber;
+            //result = pow(base, 2);
+            break;
+        case 11:
+            result = pow(firstNumber, secondNumber);
+            break;
+        default:
+            break;
     }
     
     NSLog(@"Calc:\nNum1: %g\nOper: %@\nNum2: %g\nResult: %g",firstNumber,operation,secondNumber,result);
