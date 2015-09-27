@@ -18,6 +18,7 @@
 @property (nonatomic, strong) CalculatorBrain *brain;
 @property (nonatomic) NSString* operation;
 @property (nonatomic) double operand;
+
 @end
 
 @implementation ViewController
