@@ -33,9 +33,89 @@ double factorial(double n)
     }
 }
 
+
+
 -(double)performOperation:(NSString *)operation firstOperand:(double)firstNumber secondOperand:(double)secondNumber{
     double result = secondNumber;
     
+    NSString *operators = operation;
+    NSArray *items = @[@"0", @"+",@"*",@"/",@"-",@"sin",@"cos", @"sqrt",@"+/-",@"!",@"1/x",@"x^2",@"x^y"];
+    long item = [items indexOfObject:operators];
+    
+    
+    switch (item){
+            
+        case 1:
+            operators = @"+";
+            result = firstNumber + secondNumber;
+            break;
+            
+        case 2:
+            operators = @"*";
+            result = firstNumber * secondNumber;
+            break;
+            
+        case 3:
+            operators = @"/";
+            result = firstNumber / secondNumber;
+            break;
+            
+        case 4:
+            operators = @"-";
+            result = firstNumber - secondNumber;
+            break;
+            
+        case 5:
+            operators = @"sin";
+            result = sin(secondNumber);
+            break;
+            
+        case 6:
+            operators = @"cos";
+            result = cos(secondNumber);
+            break;
+            
+        case 7:
+            operators = @"sqrt";
+            result = sqrt(secondNumber);
+            break;
+            
+        case 8:
+            operators = @"+/-";
+            result = secondNumber*-1;
+            break;
+            
+        case 9:
+            operators = @"!";
+            if (secondNumber>=0) result = factorial(secondNumber);
+            break;
+            
+        case 10:
+            operators = @"1/x";
+            if (secondNumber) result = (1/secondNumber);
+            break;
+            
+        case 11:
+            operators = @"x^2";
+            double base = secondNumber;
+            result = pow(base, 2);
+            break;
+            
+        case 12:
+            operators = @"x^y";
+            result = pow(firstNumber, secondNumber);
+            break;
+            
+        default:
+            break;
+            
+    }
+    NSLog(@"Calc:\nNum1: %g\nOper: %@\nNum2: %g\nResult: %g",firstNumber,operation,secondNumber,result);
+    
+    return result;
+}
+
+    /*
     if ([operation isEqualToString:@"+"]) {
         result = firstNumber + secondNumber;
     }else if ([@"*" isEqualToString:operation]){
@@ -62,11 +142,11 @@ double factorial(double n)
     }else if ([operation isEqualToString:@"x^y"]){
         result = pow(firstNumber, secondNumber);
     }
-    
+     
     NSLog(@"Calc:\nNum1: %g\nOper: %@\nNum2: %g\nResult: %g",firstNumber,operation,secondNumber,result);
-    
     return result;
 }
+     */
 
 -(NSString*)formattedTextNumber:(NSString*)text numberOfFractionDigits:(int)precision{
     double num = [text doubleValue];
