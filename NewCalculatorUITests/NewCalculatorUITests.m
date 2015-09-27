@@ -193,4 +193,59 @@
     XCTAssertTrue(display.exists);
 }
 
+- (void)testPrecision{
+    // Use recording to get started writing UI tests.
+    
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:0] tap];
+    [app.buttons[@"6"] tap];
+    
+    XCUIElement *button = app.buttons[@"."];
+    [button tap];
+    
+    XCUIElement *button2 = app.buttons[@"2"];
+    [button2 tap];
+    
+    XCUIElement *button3 = app.buttons[@"5"];
+    [button3 tap];
+    [app.buttons[@"-"] tap];
+    [app.buttons[@"1"] tap];
+    [button tap];
+    [button2 tap];
+    [button3 tap];
+    [app.buttons[@"="] tap];
+    
+    
+    XCUIElement *display = app.staticTexts[@"5.00"];
+    XCTAssertTrue(display.exists);
+    
+    
+    XCUIApplication *app2 = [[XCUIApplication alloc] init];
+    [app2.buttons[@"C"] tap];
+    [[[[[app2.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:1] tap];
+    [app2.buttons[@"3"] tap];
+    
+    XCUIElement *button4 = app2.buttons[@"."];
+    [button4 tap];
+    
+    XCUIElement *button5 = app2.buttons[@"2"];
+    [button5 tap];
+    
+    XCUIElement *button6 = app2.buttons[@"5"];
+    [button6 doubleTap];
+    [app2.buttons[@"-"] tap];
+    [button4 tap];
+    [button5 tap];
+    [button6 doubleTap];
+    [app2.buttons[@"="] tap];
+
+    display = app.staticTexts[@"3.000"];
+    XCTAssertTrue(display.exists);
+    
+    
+}
+
+
+
 @end
