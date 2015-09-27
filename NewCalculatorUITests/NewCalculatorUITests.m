@@ -2,7 +2,7 @@
 //  NewCalculatorUITests.m
 //  NewCalculatorUITests
 //
-//  Created by Alotaibi, Waleed N on 9/25/15.
+//  Created by Moradiya, Bhavik K on 9/27/15.
 //  Copyright © 2015 Gannon University. All rights reserved.
 //
 
@@ -31,224 +31,490 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
-//-(XCUIElement *) getDisplayElement{
-//    return (display)
-//}
--(void)testAddition{
+
+- (void)testSin
+{
+    
     XCUIApplication *app = [[XCUIApplication alloc] init];
-    [app.buttons[@"6"] tap];
+    [app.buttons[@"1"] tap];
+    [app.buttons[@"2"] tap];
+    [app.buttons[@"sin"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"-0.536573"];
+    XCTAssertTrue(display.exists);
+    
+}
+
+- (void)testCos
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [app.buttons[@"1"] tap];
+    [app.buttons[@"2"] tap];
+    [app.buttons[@"cos"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"0.843854"];
+    XCTAssertTrue(display.exists);
+    
+}
+
+- (void)testPlusandminus
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [app.buttons[@"1"] tap];
+    [app.buttons[@"2"] tap];
+    [app.buttons[@"+/-"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"-12"];
+    XCTAssertTrue(display.exists);
+    
+}
+
+- (void)testSqrt
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [app.buttons[@"1"] tap];
+    [app.buttons[@"2"] tap];
+    [app.buttons[@"sqrt"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"3.4641"];
+    XCTAssertTrue(display.exists);
+    
+}
+- (void)testPi
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    
+    [app.buttons[@"(pi)"] tap];
     [app.buttons[@"+"] tap];
     [app.buttons[@"3"] tap];
     [app.buttons[@"="] tap];
-    XCUIElement *display= app.staticTexts[@"9"];
+    
+    XCUIElement *display= app.staticTexts[@"6.14159"];
     XCTAssertTrue(display.exists);
-    [app.buttons[@"6"] doubleTap];
+    
+}
+- (void)testFactorial
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    
+    [app.buttons[@"4"] tap];
+    [app.buttons[@"!"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"24"];
+    XCTAssertTrue(display.exists);
+    
+    
+}
+
+- (void)testByDivsion
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    
+    [app.buttons[@"5"] tap];
+    [app.buttons[@"1/x"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"0.2"];
+    XCTAssertTrue(display.exists);
+    
+    
+}
+
+- (void)testXsqare
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    
+    [app.buttons[@"4"] tap];
+    [app.buttons[@"x^2"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"16"];
+    XCTAssertTrue(display.exists);
+    
+}
+
+- (void)testXsqareY
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    
+    [app.buttons[@"5"] tap];
+    [app.buttons[@"x^y"] tap];
+    [app.buttons[@"6"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"30"];
+    XCTAssertTrue(display.exists);
+    
+}
+
+- (void)testParenthesis
+{
+    
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [app.buttons[@"("] tap];
+    [app.buttons[@"x"] tap];
+    [app.buttons[@"+"] tap];
+    [app.buttons[@"5"] tap];
+    [app.buttons[@")"] tap];
+    
+    XCUIElement *xButton = app.buttons[@"x="];
+    [xButton tap];
+    [app.alerts[@"Value for X"].collectionViews.buttons[@"OK"] tap];
+    [app.buttons[@"6"] tap];
+    [xButton tap];
+    
+    XCUIElement *display= app.staticTexts[@"11"];
+    XCTAssertTrue(display.exists);
+    
+    
+}
+
+- (void)testPricisionSin
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:0] tap];
+    [app.buttons[@"Increment"] tap];
+    [app.buttons[@"1"] tap];
+    [app.buttons[@"2"] tap];
+    [app.buttons[@"sin"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"-0.537"];
+    XCTAssertTrue(display.exists);
+    
+}
+- (void)testPricisionCos
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:0] tap];
+    [app.buttons[@"Increment"] tap];
+    [app.buttons[@"1"] tap];
+    [app.buttons[@"2"] tap];
+    [app.buttons[@"cos"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"0.844"];
+    XCTAssertTrue(display.exists);
+    
+}
+
+- (void)testPricisionPlusandminus
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:0] tap];
+    [app.buttons[@"Increment"] tap];
+    [app.buttons[@"1"] tap];
+    [app.buttons[@"2"] tap];
+    [app.buttons[@"+/-"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"-12.000"];
+    XCTAssertTrue(display.exists);
+    
+}
+
+- (void)testPricisionSqrt
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:0] tap];
+    [app.buttons[@"Increment"] tap];
+    [app.buttons[@"1"] tap];
+    [app.buttons[@"2"] tap];
+    [app.buttons[@"sqrt"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"3.464"];
+    XCTAssertTrue(display.exists);
+    
+}
+- (void)testPricisionPi
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:0] tap];
+    [app.buttons[@"Increment"] tap];
+    
+    
+    [app.buttons[@"(pi)"] tap];
     [app.buttons[@"+"] tap];
     [app.buttons[@"3"] tap];
     [app.buttons[@"="] tap];
-    display= app.staticTexts[@"69"];
+    
+    XCUIElement *display= app.staticTexts[@"6.142"];
     XCTAssertTrue(display.exists);
     
 }
--(void)testSubtraction{
-    XCUIApplication *app = [[XCUIApplication alloc] init];
-    [app.buttons[@"6"] tap];
-    [app.buttons[@"-"] tap];
-    [app.buttons[@"3"] tap];
-    [app.buttons[@"="] tap];
-    XCUIElement *display= app.staticTexts[@"3"];
-    XCTAssertTrue(display.exists);
-    [app.buttons[@"6"] doubleTap];
-    [app.buttons[@"-"] tap];
-    [app.buttons[@"3"] tap];
-    [app.buttons[@"="] tap];
-    display= app.staticTexts[@"63"];
-    XCTAssertTrue(display.exists);
-}
--(void)testMultiplucation{
-    XCUIApplication *app = [[XCUIApplication alloc] init];
-    [app.buttons[@"6"] tap];
-    [app.buttons[@"*"] tap];
-    [app.buttons[@"3"] tap];
-    [app.buttons[@"="] tap];
-    XCUIElement *display= app.staticTexts[@"18"];
-    XCTAssertTrue(display.exists);
-    [app.buttons[@"6"] doubleTap];
-    [app.buttons[@"*"] tap];
-    [app.buttons[@"3"] tap];
-    [app.buttons[@"="] tap];
-    display= app.staticTexts[@"198"];
-    XCTAssertTrue(display.exists);}
--(void)testDivision{
-    XCUIApplication *app = [[XCUIApplication alloc] init];
-    [app.buttons[@"6"] tap];
-    [app.buttons[@"/"] tap];
-    [app.buttons[@"3"] tap];
-    [app.buttons[@"="] tap];
-    XCUIElement *display= app.staticTexts[@"2"];
-    XCTAssertTrue(display.exists);
-    [app.buttons[@"6"] doubleTap];
-    [app.buttons[@"/"] tap];
-    [app.buttons[@"3"] tap];
-    [app.buttons[@"="] tap];
-    display= app.staticTexts[@"22"];
-    XCTAssertTrue(display.exists);
-}
-- (void)testEPrecisionSub {
+- (void)testPricisionFactorial
+{
+    
     XCUIApplication *app = [[XCUIApplication alloc] init];
     [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:0] tap];
+    [app.buttons[@"Increment"] tap];
     
-    XCUIElement *button = app.buttons[@"2"];
-    [button tap];
-    
-    XCUIElement *button2 = app.buttons[@"."];
-    [button2 tap];
-    [app.buttons[@"6"] doubleTap];
-    [app.buttons[@"-"] tap];
-    [button tap];
-    [button2 tap];
-    [app.buttons[@"3"] doubleTap];
+    [app.buttons[@"4"] tap];
+    [app.buttons[@"!"] tap];
     [app.buttons[@"="] tap];
-    XCUIElement *display= app.staticTexts[@"0.33"];
-    display= app.staticTexts[@"0.33"];
+    
+    XCUIElement *display= app.staticTexts[@"24.000"];
     XCTAssertTrue(display.exists);
+    
+    
 }
-- (void)testEPrecisionAdd {
+
+- (void)testPricisionByDivsion
+{
+    
     XCUIApplication *app = [[XCUIApplication alloc] init];
     [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:0] tap];
+    [app.buttons[@"Increment"] tap];
     
-    XCUIElement *button = app.buttons[@"2"];
-    [button tap];
+    [app.buttons[@"5"] tap];
+    [app.buttons[@"1/x"] tap];
+    [app.buttons[@"="] tap];
     
-    XCUIElement *button2 = app.buttons[@"."];
-    [button2 tap];
-    [app.buttons[@"6"] doubleTap];
+    XCUIElement *display= app.staticTexts[@"0.200"];
+    XCTAssertTrue(display.exists);
+    
+    
+}
+
+- (void)testPricisionXsqare
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:0] tap];
+    [app.buttons[@"Increment"] tap];
+    
+    [app.buttons[@"4"] tap];
+    [app.buttons[@"x^2"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"16.000"];
+    XCTAssertTrue(display.exists);
+    
+}
+
+- (void)testPricisionXsqareY
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:0] tap];
+    [app.buttons[@"Increment"] tap];
+    
+    [app.buttons[@"5"] tap];
+    [app.buttons[@"x^y"] tap];
+    [app.buttons[@"6"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"30.000"];
+    XCTAssertTrue(display.exists);
+    
+}
+
+- (void)testPrecisionParenthesis
+{
+    
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:0] tap];
+    [app.buttons[@"Increment"] tap];
+    [app.buttons[@"("] tap];
+    [app.buttons[@"x"] tap];
     [app.buttons[@"+"] tap];
-    [button tap];
-    [button2 tap];
-    [app.buttons[@"3"] doubleTap];
-    [app.buttons[@"="] tap];
-    XCUIElement *display= app.staticTexts[@"4.99"];
-    display= app.staticTexts[@"4.99"];
+    [app.buttons[@"5"] tap];
+    [app.buttons[@")"] tap];
+    
+    XCUIElement *xButton = app.buttons[@"x="];
+    [xButton tap];
+    [app.alerts[@"Value for X"].collectionViews.buttons[@"OK"] tap];
+    [app.buttons[@"6"] tap];
+    [xButton tap];
+    
+    XCUIElement *display= app.staticTexts[@"11.000"];
     XCTAssertTrue(display.exists);
+    
+    
 }
-- (void)testEPrecisionMul {
-    XCUIApplication *app = [[XCUIApplication alloc] init];
-    [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:0] tap];
+- (void)testDynamicPrecisionSin
+{
     
-    XCUIElement *button = app.buttons[@"2"];
-    [button tap];
     
-    XCUIElement *button2 = app.buttons[@"."];
-    [button2 tap];
-    [app.buttons[@"6"] doubleTap];
-    [app.buttons[@"*"] tap];
-    [button tap];
-    [button2 tap];
-    [app.buttons[@"3"] doubleTap];
-    [app.buttons[@"="] tap];
-    XCUIElement *display= app.staticTexts[@"6.20"];
-    display= app.staticTexts[@"6.20"];
-    XCTAssertTrue(display.exists);
-}
-- (void)testEPrecisionDiv {
-    XCUIApplication *app = [[XCUIApplication alloc] init];
-    [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:0] tap];
-    
-    XCUIElement *button = app.buttons[@"2"];
-    [button tap];
-    
-    XCUIElement *button2 = app.buttons[@"."];
-    [button2 tap];
-    [app.buttons[@"6"] doubleTap];
-    [app.buttons[@"/"] tap];
-    [button tap];
-    [button2 tap];
-    [app.buttons[@"3"] doubleTap];
-    [app.buttons[@"="] tap];
-    XCUIElement *display= app.staticTexts[@"1.14"];
-    display= app.staticTexts[@"1.14"];
-    XCTAssertTrue(display.exists);
-}
-- (void)testDaynicPrecisionAdd {
     
     XCUIApplication *app = [[XCUIApplication alloc] init];
     [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:1] tap];
+    [app.buttons[@"1"] tap];
+    [app.buttons[@"2"] tap];
+    [app.buttons[@"sin"] tap];
+    [app.buttons[@"="] tap];
     
-    XCUIElement *button = app.buttons[@"2"];
-    [button tap];
+    XCUIElement *display= app.staticTexts[@"-0.536573"];
+    XCTAssertTrue(display.exists);
     
-    XCUIElement *button2 = app.buttons[@"."];
-    [button2 tap];
-    [app.buttons[@"6"] doubleTap];
+    
+}
+
+- (void)testDynamicPrecisionCos
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:1] tap];
+    [app.buttons[@"1"] tap];
+    [app.buttons[@"2"] tap];
+    [app.buttons[@"cos"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"0.843854"];
+    XCTAssertTrue(display.exists);
+    
+}
+
+- (void)testDynamicPrecisionPlusandminus
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:1] tap];
+    [app.buttons[@"1"] tap];
+    [app.buttons[@"2"] tap];
+    [app.buttons[@"+/-"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"-12"];
+    XCTAssertTrue(display.exists);
+    
+}
+
+- (void)testDynamicPrecisionSqrt
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:1] tap];
+    [app.buttons[@"1"] tap];
+    [app.buttons[@"2"] tap];
+    [app.buttons[@"sqrt"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"3.4641"];
+    XCTAssertTrue(display.exists);
+    
+}
+- (void)testDynamicPrecisionPi
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:1] tap];
+    [app.buttons[@"(pi)"] tap];
     [app.buttons[@"+"] tap];
-    [button tap];
-    [button2 tap];
-    [app.buttons[@"3"] doubleTap];
+    [app.buttons[@"3"] tap];
     [app.buttons[@"="] tap];
-    XCUIElement *display= app.staticTexts[@"4.99"];
-    display= app.staticTexts[@"4.99"];
+    
+    XCUIElement *display= app.staticTexts[@"6.14159"];
     XCTAssertTrue(display.exists);
+    
 }
-- (void)testDaynicPrecisionSub {
+- (void)testDynamicPrecisionFactorial
+{
     
     XCUIApplication *app = [[XCUIApplication alloc] init];
     [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:1] tap];
-    
-    XCUIElement *button = app.buttons[@"2"];
-    [button tap];
-    
-    XCUIElement *button2 = app.buttons[@"."];
-    [button2 tap];
-    [app.buttons[@"6"] doubleTap];
-    [app.buttons[@"-"] tap];
-    [button tap];
-    [button2 tap];
-    [app.buttons[@"3"] doubleTap];
+    [app.buttons[@"4"] tap];
+    [app.buttons[@"!"] tap];
     [app.buttons[@"="] tap];
-    XCUIElement *display= app.staticTexts[@"0.33"];
-    display= app.staticTexts[@"0.33"];
+    
+    XCUIElement *display= app.staticTexts[@"24"];
     XCTAssertTrue(display.exists);
+    
+    
 }
-- (void)testDaynicPrecisionMul {
+
+- (void)testDynamicPrecisionByDivsion
+{
     
     XCUIApplication *app = [[XCUIApplication alloc] init];
     [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:1] tap];
-    
-    XCUIElement *button = app.buttons[@"2"];
-    [button tap];
-    
-    XCUIElement *button2 = app.buttons[@"."];
-    [button2 tap];
-    [app.buttons[@"6"] doubleTap];
-    [app.buttons[@"*"] tap];
-    [button tap];
-    [button2 tap];
-    [app.buttons[@"3"] doubleTap];
+    [app.buttons[@"5"] tap];
+    [app.buttons[@"1/x"] tap];
     [app.buttons[@"="] tap];
-    XCUIElement *display= app.staticTexts[@"6.1978"];
-    display= app.staticTexts[@"6.1978"];
+    
+    XCUIElement *display= app.staticTexts[@"0.2"];
     XCTAssertTrue(display.exists);
+    
+    
 }
-- (void)testDaynicPrecisionDiv {
+
+- (void)testDynamicPrecisionXsqare
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:1] tap];
+    [app.buttons[@"4"] tap];
+    [app.buttons[@"x^2"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"16"];
+    XCTAssertTrue(display.exists);
+    
+}
+
+- (void)testDynamicPrecisionXsqareY
+{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:1] tap];
+    [app.buttons[@"5"] tap];
+    [app.buttons[@"x^y"] tap];
+    [app.buttons[@"6"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display= app.staticTexts[@"30"];
+    XCTAssertTrue(display.exists);
+    
+}
+
+- (void)testDynamicPrecisionParenthesis
+{
     
     
     XCUIApplication *app = [[XCUIApplication alloc] init];
     [[[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:1] tap];
+    [app.buttons[@"("] tap];
+    [app.buttons[@"x"] tap];
+    [app.buttons[@"+"] tap];
+    [app.buttons[@"5"] tap];
+    [app.buttons[@")"] tap];
     
-    XCUIElement *button = app.buttons[@"2"];
-    [button tap];
+    XCUIElement *xButton = app.buttons[@"x="];
+    [xButton tap];
+    [app.alerts[@"Value for X"].collectionViews.buttons[@"OK"] tap];
+    [app.buttons[@"6"] tap];
+    [xButton tap];
     
-    XCUIElement *button2 = app.buttons[@"."];
-    [button2 tap];
-    [app.buttons[@"6"] doubleTap];
-    [app.buttons[@"/"] tap];
-    [button tap];
-    [button2 tap];
-    [app.buttons[@"3"] doubleTap];
-    [app.buttons[@"="] tap];
-    XCUIElement *display= app.staticTexts[@"1.14163"];
-    display= app.staticTexts[@"1.14163"];
+    XCUIElement *display= app.staticTexts[@"11"];
     XCTAssertTrue(display.exists);
+    
+    
 }
+
+
+
+
+
+
 @end
