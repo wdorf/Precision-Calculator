@@ -1,6 +1,6 @@
 //Group 9 
 //  CalculatorBrain.h
-//  NewCalculator sss
+//  NewCalculator ssss
 //
 //  Created by Diego Leal Togni on 10/3/14.
 //  Copyright (c) 2014 Gannon University. All rights reserved.
