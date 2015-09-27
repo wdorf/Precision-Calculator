@@ -2,7 +2,7 @@
 //  NewCalculatorUITests.m
 //  NewCalculatorUITests
 //
-//  Created by Orlando, Marco J on 9/26/15. aaaa
+//  Created by Orlando, Marco J on 9/26/15. aaaaa
 //  Copyright © 2015 Gannon University. All rights reserved.
 //
 
