@@ -193,4 +193,18 @@
     XCTAssertTrue(display.exists);
 }
 
+- (void)testfactorial{
+    // Use recording to get started writing UI tests.
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [app.buttons[@"6"] tap];
+    [app.buttons[@"+/-"] tap];
+    [app.buttons[@"!"] tap];
+    [app.buttons[@"="] tap];
+    
+    XCUIElement *display = app.staticTexts[@"1"];
+    XCTAssertTrue(display.exists);
+}
+
+
 @end
