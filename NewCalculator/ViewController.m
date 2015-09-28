@@ -167,10 +167,6 @@ double memory = 0;
             self.lblDecimalPlates.text = [NSString stringWithFormat:@"%d",decimalPlates];
         }
     }
-    //round the value if some precisionMode is selected
-    if (([self.fixedPrecisionMode isOn])||([self.dynamicPrecisionMode isOn])) {
-        self.numericDisplay.text = [self.brain formattedTextNumber:self.numericDisplay.text numberOfFractionDigits:[self.lblDecimalPlates.text intValue]];
-    }
     
     //send the value to the brain if equal is pressed for the first time
     if (self.isInTheMiddleOfEnteringANumber) {
