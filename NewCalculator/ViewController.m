@@ -121,12 +121,13 @@ double memory = 0;
     self.numericDisplay.text = [NSString stringWithFormat:@"%1.6g",[self.brain performOperation:[sender currentTitle] firstOperand:self.operand secondOperand:[self.numericDisplay.text doubleValue]]];
     
     //update the precision, if dynamicMode is selected
+    /*
     if ([self.dynamicPrecisionMode isOn]) {
         int decimalPlates = [self.brain decimalPlaces:self.numericDisplay.text];
         if (decimalPlates > [self.lblDecimalPlates.text intValue]) {
             self.lblDecimalPlates.text = [NSString stringWithFormat:@"%d",decimalPlates];
         }
-    }
+    }*/
     
     //round the value if some precisionMode is selected
     if (([self.fixedPrecisionMode isOn])||([self.dynamicPrecisionMode isOn])) {
@@ -139,9 +140,13 @@ double memory = 0;
     self.isOperatorPressed = NO;
 }
 
+- (void)roundValue_For_SelectedPrecision{
+    
+}
+
 
 - (IBAction)equalPressed:(UIButton *)sender {
-    
+    NSLog(@"Hello");
     if ([sender.currentTitle isEqualToString:@"="]) {
         [self equationDigitPressed:sender];
     }
