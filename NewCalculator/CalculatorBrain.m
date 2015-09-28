@@ -72,7 +72,7 @@ double factorial(double n)
         result = pow(base, 2);
     },
                    @"x^y" : ^{
-        result = firstNumber * secondNumber;
+        result= pow(firstNumber, secondNumber);
     },
                    }[key] ?: ^{
                        NSLog(@"Calc:\nNum1: %g\nOper: %@\nNum2: %g\nResult: %g",firstNumber,operation,secondNumber,result);
