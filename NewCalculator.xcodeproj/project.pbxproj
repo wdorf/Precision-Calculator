@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77D0C4111BB88BD0000C86FB /* NewCalculatorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D0C4101BB88BD0000C86FB /* NewCalculatorUITests.m */; };
 		F11DA11D19DF6896004C7F5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F11DA11C19DF6896004C7F5B /* main.m */; };
 		F11DA12019DF6896004C7F5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F11DA11F19DF6896004C7F5B /* AppDelegate.m */; };
 		F11DA12319DF6896004C7F5B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F11DA12219DF6896004C7F5B /* ViewController.m */; };
@@ -18,6 +19,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		77D0C4131BB88BD0000C86FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F11DA10F19DF6896004C7F5B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F11DA11619DF6896004C7F5B;
+			remoteInfo = NewCalculator;
+		};
 		F11DA13119DF6896004C7F5B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F11DA10F19DF6896004C7F5B /* Project object */;
@@ -28,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		77D0C40E1BB88BD0000C86FB /* NewCalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewCalculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		77D0C4101BB88BD0000C86FB /* NewCalculatorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewCalculatorUITests.m; sourceTree = "<group>"; };
+		77D0C4121BB88BD0000C86FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F11DA11719DF6896004C7F5B /* NewCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11DA11B19DF6896004C7F5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F11DA11C19DF6896004C7F5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -46,6 +57,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		77D0C40B1BB88BD0000C86FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F11DA11419DF6896004C7F5B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -63,11 +81,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		77D0C40F1BB88BD0000C86FB /* NewCalculatorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				77D0C4101BB88BD0000C86FB /* NewCalculatorUITests.m */,
+				77D0C4121BB88BD0000C86FB /* Info.plist */,
+			);
+			path = NewCalculatorUITests;
+			sourceTree = "<group>";
+		};
 		F11DA10E19DF6896004C7F5B = {
 			isa = PBXGroup;
 			children = (
 				F11DA11919DF6896004C7F5B /* NewCalculator */,
 				F11DA13319DF6896004C7F5B /* NewCalculatorTests */,
+				77D0C40F1BB88BD0000C86FB /* NewCalculatorUITests */,
 				F11DA11819DF6896004C7F5B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,6 +105,7 @@
 			children = (
 				F11DA11719DF6896004C7F5B /* NewCalculator.app */,
 				F11DA13019DF6896004C7F5B /* NewCalculatorTests.xctest */,
+				77D0C40E1BB88BD0000C86FB /* NewCalculatorUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,6 +156,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		77D0C40D1BB88BD0000C86FB /* NewCalculatorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77D0C4151BB88BD0000C86FB /* Build configuration list for PBXNativeTarget "NewCalculatorUITests" */;
+			buildPhases = (
+				77D0C40A1BB88BD0000C86FB /* Sources */,
+				77D0C40B1BB88BD0000C86FB /* Frameworks */,
+				77D0C40C1BB88BD0000C86FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				77D0C4141BB88BD0000C86FB /* PBXTargetDependency */,
+			);
+			name = NewCalculatorUITests;
+			productName = NewCalculatorUITests;
+			productReference = 77D0C40E1BB88BD0000C86FB /* NewCalculatorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		F11DA11619DF6896004C7F5B /* NewCalculator */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F11DA13A19DF6896004C7F5B /* Build configuration list for PBXNativeTarget "NewCalculator" */;
@@ -171,6 +218,11 @@
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Gannon University";
 				TargetAttributes = {
+					77D0C40D1BB88BD0000C86FB = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = FHSMS437C6;
+						TestTargetID = F11DA11619DF6896004C7F5B;
+					};
 					F11DA11619DF6896004C7F5B = {
 						CreatedOnToolsVersion = 6.0.1;
 						DevelopmentTeam = FHSMS437C6;
@@ -196,11 +248,19 @@
 			targets = (
 				F11DA11619DF6896004C7F5B /* NewCalculator */,
 				F11DA12F19DF6896004C7F5B /* NewCalculatorTests */,
+				77D0C40D1BB88BD0000C86FB /* NewCalculatorUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		77D0C40C1BB88BD0000C86FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F11DA11519DF6896004C7F5B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -221,6 +281,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		77D0C40A1BB88BD0000C86FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77D0C4111BB88BD0000C86FB /* NewCalculatorUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F11DA11319DF6896004C7F5B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -243,6 +311,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		77D0C4141BB88BD0000C86FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F11DA11619DF6896004C7F5B /* NewCalculator */;
+			targetProxy = 77D0C4131BB88BD0000C86FB /* PBXContainerItemProxy */;
+		};
 		F11DA13219DF6896004C7F5B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F11DA11619DF6896004C7F5B /* NewCalculator */;
@@ -270,6 +343,38 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		77D0C4161BB88BD0000C86FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = NewCalculatorUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Gannon.NewCalculatorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = NewCalculator;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		77D0C4171BB88BD0000C86FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = NewCalculatorUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Gannon.NewCalculatorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = NewCalculator;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
 		F11DA13819DF6896004C7F5B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -409,6 +514,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		77D0C4151BB88BD0000C86FB /* Build configuration list for PBXNativeTarget "NewCalculatorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77D0C4161BB88BD0000C86FB /* Debug */,
+				77D0C4171BB88BD0000C86FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		F11DA11219DF6896004C7F5B /* Build configuration list for PBXProject "NewCalculator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
