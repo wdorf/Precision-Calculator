@@ -368,7 +368,6 @@ void recursiveAddSubtract(int i, NSMutableArray *tempEquation, CalculatorBrain *
             }
         }
         
-        //searching for trigonometric functions
         for (int i=1; i < tempEquation.count; i++) {
             recursiveTrig(&i, tempEquation, self);
         }
