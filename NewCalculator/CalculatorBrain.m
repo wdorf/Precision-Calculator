@@ -108,6 +108,7 @@ double factorial(double n)
             break;
             
     }
+    
     NSLog(@"Calc:\nNum1: %g\nOper: %@\nNum2: %g\nResult: %g",firstNumber,operation,secondNumber,result);
     
     return result;
@@ -351,7 +352,6 @@ void recursiveAddSubtract(int i, NSMutableArray *tempEquation, CalculatorBrain *
             
         }
         
-        //searching for factorial
         for (int i=0; i < (tempEquation.count-1); i++) {
             recursiveFactorial(i, tempEquation, self);
         }
@@ -385,8 +385,6 @@ void recursiveAddSubtract(int i, NSMutableArray *tempEquation, CalculatorBrain *
             }
         }
         
-        
-        //searching for square root
         for (int i=1; i < tempEquation.count; i++) {
             recursiveSquareRoot(&i, tempEquation, self);
         }
@@ -403,7 +401,6 @@ void recursiveAddSubtract(int i, NSMutableArray *tempEquation, CalculatorBrain *
             }
         }
         
-        //searching for exponential
         for (int i=0; i < (tempEquation.count-1); i++) {
             recursiveExponential(i, tempEquation, self);
         }
@@ -420,7 +417,6 @@ void recursiveAddSubtract(int i, NSMutableArray *tempEquation, CalculatorBrain *
             }
         }
         
-        //searching for multiplication and division
         for (int i=0; i < (tempEquation.count-1); i++) {
             recursiveMultiplicationDivision(i, tempEquation, self);
         }
@@ -437,7 +433,6 @@ void recursiveAddSubtract(int i, NSMutableArray *tempEquation, CalculatorBrain *
             }
         }
         
-        //searching for addition and subtraction
         for (int i=0; i < (tempEquation.count-1); i++) {
             recursiveAddSubtract(i, tempEquation, self);
         }

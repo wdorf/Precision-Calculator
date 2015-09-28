@@ -247,6 +247,8 @@ double memory = 0;
 }
 
 - (IBAction)equationDigitPressed:(UIButton *)sender {
+   
+    
     if ([[sender currentTitle] isEqualToString:@"1/x"]) {
         self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:@"1/"];
         self.equationDisplay.text = [self.equationDisplay.text stringByAppendingString:self.numericDisplay.text];
