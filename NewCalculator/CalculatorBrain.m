@@ -25,6 +25,7 @@
 }
 
 double factorial(double Number)
+
 {
     if (Number <= 0) {
         return 1;
