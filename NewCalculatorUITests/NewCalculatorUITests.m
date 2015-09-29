@@ -193,7 +193,7 @@
     XCTAssertTrue(display.exists);
 }
 
-- (void)testPrecision{
+- (void)testfactorial{
     // Use recording to get started writing UI tests.
     
     
@@ -251,34 +251,13 @@
     
     XCUIApplication *app = [[XCUIApplication alloc] init];
     [app.buttons[@"6"] tap];
+    [app.buttons[@"+/-"] tap];
     [app.buttons[@"!"] tap];
+    [app.buttons[@"="] tap];
     
-    XCUIElement *button = app.buttons[@"="];
-    [button tap];
-    [app.buttons[@"+"] tap];
-    [app.buttons[@"9"] tap];
-    [button tap];
-    [app.buttons[@"sqrt"] tap];
-    [app.buttons[@"-"] tap];
-    
-    XCUIElement *button2 = app.buttons[@"2"];
-    [button2 tap];
-    [button tap];
-    [app.buttons[@"/"] tap];
-    [app.buttons[@"5"] tap];
-    [button tap];
-    [app.buttons[@"x^y"] tap];
-    [app.buttons[@"3"] tap];
-    [button tap];
-    [app.buttons[@"*"] tap];
-    [button2 tap];
-    [button tap];
-    
-    XCUIElement *display = app.staticTexts[@"250"];
+    XCUIElement *display = app.staticTexts[@"1"];
     XCTAssertTrue(display.exists);
-    
 }
-
 
 
 @end

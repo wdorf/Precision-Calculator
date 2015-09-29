@@ -24,12 +24,13 @@
     return _equation;
 }
 
-double factorial(double n)
+double factorial(double Number)
+
 {
-    if (n <= 0) {
+    if (Number <= 0) {
         return 1;
     } else {
-        return n * factorial (n - 1);
+        return Number * factorial (Number - 1);
     }
 }
 
@@ -85,7 +86,8 @@ double factorial(double n)
             
         case 9:
             operators = @"!";
-            if (secondNumber>=0) result = factorial(secondNumber);
+            if (firstNumber >= 0 || secondNumber >=0) result = factorial(secondNumber);
+            else result = 1;
             break;
             
         case 10:

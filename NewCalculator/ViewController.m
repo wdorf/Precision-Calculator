@@ -298,7 +298,7 @@ double memory = 0;
     }
 }
 
-- (IBAction)atributeValueForX:(UIButton *)sender {
+- (IBAction)attributeValueForX:(UIButton *)sender {
     if (!self.isSolvePressed) {
         self.isInTheMiddleOfEnteringANumber = NO;
         self.userPressedDot = NO;
