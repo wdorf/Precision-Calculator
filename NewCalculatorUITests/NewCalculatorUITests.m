@@ -247,7 +247,7 @@
 }
 
 - (void)testSolveEquationRecursive{
-    //test many different operations in succession
+    //test many different operations in successionn
     
     XCUIApplication *app = [[XCUIApplication alloc] init];
     [app.buttons[@"6"] tap];
