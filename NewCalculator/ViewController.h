@@ -19,5 +19,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *equationDisplay;
 
+-(void)updateFixedPrecisionMode;
+-(void) updateDynamicPrecisionMode;
+-(void)updateWithAPrecisionMode;
 @end
 
