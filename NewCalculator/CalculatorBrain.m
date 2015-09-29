@@ -121,9 +121,8 @@ double factorial(double n)
     
     BOOL isEquationSolved = NO;
     while (!isEquationSolved) {
-        
         while ([tempEquation containsObject:@"("]) {
-            
+           
             //searching for numbers surrounded by parentheses
             for (int i=1; i < (tempEquation.count-1); i++) {
                 id currentComponent = [tempEquation objectAtIndex:i];
@@ -380,6 +379,25 @@ double factorial(double n)
     return tempEquation;
 }
 
+//****
+-(void)searchTrigonometric_Functions:(NSMutableArray *)tempEquation{
+    //searching for trigonometric functions
+    for (int i=1; i < tempEquation.count; i++) {
+        id currentComponent = [tempEquation objectAtIndex:i];
+        if ([currentComponent isKindOfClass:[NSNumber class]]) {
+            id previousComponent = [tempEquation objectAtIndex:i-1];
+            if ([previousComponent isKindOfClass:[NSString class]]) {
+                if ([@[@"sin", @"cos"] containsObject:previousComponent]) {
+                    double result = [self performOperation:previousComponent firstOperand:0 secondOperand:[currentComponent doubleValue]];
+                    [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
+                    [tempEquation removeObjectAtIndex:i+1];
+                    [tempEquation removeObjectAtIndex:i-1];
+                    i--;
+                }
+            }
+        }
+    }
+}
 -(double)solveEquation{
     return [[[self solveEquationRecursive:_equation] firstObject] doubleValue];
 }

@@ -285,22 +285,21 @@ double memory = 0;
             [alert show];
             self.isSolvePressed = YES;
         }else{
-            [self.brain formatEquation:self.numericDisplay.text];
-            double result = [self.brain solveEquation];
-            self.equationDisplay.text = [self.brain displayEquation];
-            self.numericDisplay.text = [NSString stringWithFormat:@"%g",result];
-            self.isSolvePressed = NO;
+            [self doesntoContainX];
             [self equalPressed:sender];
-            
         }
     }else {
-        [self.brain formatEquation:self.numericDisplay.text];
-        double result = [self.brain solveEquation];
-        self.equationDisplay.text = [self.brain displayEquation];
-        self.numericDisplay.text = [NSString stringWithFormat:@"%g",result];
-        self.isSolvePressed = NO;
+        [self doesntoContainX];
         [self equalPressed:sender];
     }
+}
+-(void)doesntoContainX{
+    [self.brain formatEquation:self.numericDisplay.text];
+    double result = [self.brain solveEquation];
+    self.equationDisplay.text = [self.brain displayEquation];
+    self.numericDisplay.text = [NSString stringWithFormat:@"%g",result];
+    self.isSolvePressed = NO;
+    //[self equalPressed:sender];
 }
 
 @end
