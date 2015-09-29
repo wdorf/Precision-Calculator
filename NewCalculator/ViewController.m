@@ -297,7 +297,6 @@ double memory = 0;
         [self.brain pushEquationElement:sender.currentTitle];
     }
 }
-
 - (IBAction)attributeValueForX:(UIButton *)sender {
     if (!self.isSolvePressed) {
         self.isInTheMiddleOfEnteringANumber = NO;
