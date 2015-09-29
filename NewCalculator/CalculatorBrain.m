@@ -80,8 +80,8 @@ double factorial(double positiveNum)
 -(int)decimalPlaces:(NSString *)number{
     double num = [number doubleValue];
     double decimalPortion = num - floor(num);
-    int decimalPlaces = (int)[[NSString stringWithFormat:@"%1.6g",decimalPortion] length] -2;
-    return decimalPlaces;
+    int decimal = (int)[[NSString stringWithFormat:@"%1.6g",decimalPortion] length] -2;
+    return decimal;
 }
 
 -(NSString*)displayEquation{
