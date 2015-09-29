@@ -24,12 +24,12 @@
     return _equation;
 }
 
-double factorial(double n)
+double factorial(double positiveNum)
 {
-    if (n <= 0) {
+    if (positiveNum <= 0) {
         return 1;
     } else {
-        return n * factorial (n - 1);
+        return positiveNum * factorial (positiveNum - 1);
     }
 }
 
