@@ -19,6 +19,13 @@
 -(double)solveEquation;
 -(NSString*)displayEquation;
 -(void)addSignal: NSMutableArray;
+-(void)searchForNumsSurroundedByParenthesis: NSMutableArray;
+-(void)searchForFactorial: NSMutableArray;
+-(void)searchForTrigFunc: NSMutableArray;
+-(void)searchForSquareRoot: NSMutableArray;
+-(void)searchForExponential: NSMutableArray;
+-(void)searchForMultAndDiv: NSMutableArray;
+-(void)searchForAddAndSub: NSMutableArray;
 
 @property (nonatomic) NSMutableArray *equation;
 
