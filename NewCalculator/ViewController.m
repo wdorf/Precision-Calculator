@@ -78,9 +78,7 @@ double memory = 0;
 - (IBAction)operationPressed:(UIButton *)sender {
     
     //round the value if fixedPrecisionMode is selected
-    if (([self.fixedPrecisionMode isOn])) {
-        self.numericDisplay.text = [self.brain formattedTextNumber:self.numericDisplay.text numberOfFractionDigits:[self.lblDecimalPlates.text intValue]];
-    }
+    [self updateFixedPrecisionMode];
     
     //press enter (if is not pressed), save the number on the brain
     if (!self.isOperatorPressed) {
@@ -96,17 +94,10 @@ double memory = 0;
     }
     
     //update the precision, if dynamicMode is selected
-    if ([self.dynamicPrecisionMode isOn]) {
-        int decimalPlates = [self.brain decimalPlaces:self.numericDisplay.text];
-        if (decimalPlates > [self.lblDecimalPlates.text intValue]) {
-            self.lblDecimalPlates.text = [NSString stringWithFormat:@"%d",decimalPlates];
-        }
-    }
+    [self updateDynamicPrecisionMode];
     
     //round the value if some precisionMode is selected
-    if (([self.fixedPrecisionMode isOn])||([self.dynamicPrecisionMode isOn])) {
-        self.numericDisplay.text = [self.brain formattedTextNumber:self.numericDisplay.text numberOfFractionDigits:[self.lblDecimalPlates.text intValue]];
-    }
+    [self updateWithAPrecisionMode];
     
 }
 
@@ -121,17 +112,10 @@ double memory = 0;
     self.numericDisplay.text = [NSString stringWithFormat:@"%1.6g",[self.brain performOperation:[sender currentTitle] firstOperand:self.operand secondOperand:[self.numericDisplay.text doubleValue]]];
     
     //update the precision, if dynamicMode is selected
-    if ([self.dynamicPrecisionMode isOn]) {
-        int decimalPlates = [self.brain decimalPlaces:self.numericDisplay.text];
-        if (decimalPlates > [self.lblDecimalPlates.text intValue]) {
-            self.lblDecimalPlates.text = [NSString stringWithFormat:@"%d",decimalPlates];
-        }
-    }
+    [self updateDynamicPrecisionMode];
     
     //round the value if some precisionMode is selected
-    if (([self.fixedPrecisionMode isOn])||([self.dynamicPrecisionMode isOn])) {
-        self.numericDisplay.text = [self.brain formattedTextNumber:self.numericDisplay.text numberOfFractionDigits:[self.lblDecimalPlates.text intValue]];
-    }
+    [self updateWithAPrecisionMode];
     
     self.isInTheMiddleOfEnteringANumber = NO;
     self.userPressedDot = NO;
@@ -147,25 +131,16 @@ double memory = 0;
     }
     
     //round the value if some precisionMode is selected
-    if (([self.fixedPrecisionMode isOn])) {
-        self.numericDisplay.text = [self.brain formattedTextNumber:self.numericDisplay.text numberOfFractionDigits:[self.lblDecimalPlates.text intValue]];
-    }
+    [self updateFixedPrecisionMode];
     
     //perform operation, print number and save the second number in a temp var
     double numTemp = [self.numericDisplay.text doubleValue];
     self.numericDisplay.text = [NSString stringWithFormat:@"%1.6g",[self.brain performOperation:self.operation firstOperand:self.operand secondOperand:[self.numericDisplay.text doubleValue]]];
     
     //update the precision, if dynamicMode is selected
-    if ([self.dynamicPrecisionMode isOn]) {
-        int decimalPlates = [self.brain decimalPlaces:self.numericDisplay.text];
-        if (decimalPlates > [self.lblDecimalPlates.text intValue]) {
-            self.lblDecimalPlates.text = [NSString stringWithFormat:@"%d",decimalPlates];
-        }
-    }
+    [self updateDynamicPrecisionMode];
     //round the value if some precisionMode is selected
-    if (([self.fixedPrecisionMode isOn])||([self.dynamicPrecisionMode isOn])) {
-        self.numericDisplay.text = [self.brain formattedTextNumber:self.numericDisplay.text numberOfFractionDigits:[self.lblDecimalPlates.text intValue]];
-    }
+    [self updateWithAPrecisionMode];
     
     //send the value to the brain if equal is pressed for the first time
     if (self.isInTheMiddleOfEnteringANumber) {
@@ -324,6 +299,27 @@ double memory = 0;
         self.numericDisplay.text = [NSString stringWithFormat:@"%g",result];
         self.isSolvePressed = NO;
         [self equalPressed:sender];
+    }
+}
+
+-(void)updateFixedPrecisionMode{
+    if (([self.fixedPrecisionMode isOn])) {
+        self.numericDisplay.text = [self.brain formattedTextNumber:self.numericDisplay.text numberOfFractionDigits:[self.lblDecimalPlates.text intValue]];
+    }
+}
+
+-(void) updateDynamicPrecisionMode{
+    if ([self.dynamicPrecisionMode isOn]) {
+        int decimalPlates = [self.brain decimalPlaces:self.numericDisplay.text];
+        if (decimalPlates > [self.lblDecimalPlates.text intValue]) {
+            self.lblDecimalPlates.text = [NSString stringWithFormat:@"%d",decimalPlates];
+        }
+    }
+}
+
+-(void)updateWithAPrecisionMode{
+    if (([self.fixedPrecisionMode isOn])||([self.dynamicPrecisionMode isOn])) {
+        self.numericDisplay.text = [self.brain formattedTextNumber:self.numericDisplay.text numberOfFractionDigits:[self.lblDecimalPlates.text intValue]];
     }
 }
 
