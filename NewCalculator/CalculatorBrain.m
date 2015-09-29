@@ -10,6 +10,7 @@
 
 @interface CalculatorBrain ()
 @property (nonatomic) double operand;
+@property (nonatomic) double result;
 @end
 
 
@@ -34,38 +35,70 @@ double factorial(double n)
 }
 
 -(double)performOperation:(NSString *)operation firstOperand:(double)firstNumber secondOperand:(double)secondNumber{
-    double result = secondNumber;
+    _result = secondNumber;
     
-    if ([operation isEqualToString:@"+"]) {
-        result = firstNumber + secondNumber;
-    }else if ([@"*" isEqualToString:operation]){
-        result = firstNumber * secondNumber;
-    }else if ([operation isEqualToString:@"-"]){
-        result = firstNumber - secondNumber;
-    }else if ([operation isEqualToString:@"/"]){
-        if (secondNumber) result = firstNumber / secondNumber;
-    }else if ([operation isEqualToString:@"sin"]){
-        result = sin(secondNumber);
-    }else if([operation isEqualToString:@"cos"]){
-        result = cos(secondNumber);
-    }else if ([operation isEqualToString:@"sqrt"]){
-        result = sqrt(secondNumber);
-    }else if ([operation isEqualToString:@"+/-"]){
-        result = secondNumber*-1;
-    }else if([operation isEqualToString:@"!"]){
-        if (secondNumber>=0) result = factorial(secondNumber);
-    }else if ([operation isEqualToString:@"1/x"]){
-        if (secondNumber) result = (1/secondNumber);
-    }else if ([operation isEqualToString:@"x^2"]){
+    NSString *key = operation;
+    
+    ((void (^)())@{
+    @"+" : ^{
+        //operation
+        _result = firstNumber + secondNumber;
+    },
+    @"-" : ^{
+        //operation
+        _result = firstNumber - secondNumber;
+    },
+    @"*" : ^{
+        //operation
+        _result = firstNumber * secondNumber;
+    },
+    @"/" : ^{
+        //operation
+        if (secondNumber)
+        {
+            _result = firstNumber / secondNumber;
+        }
+    },
+    @"sin" : ^{
+        //operation
+        _result = sin(secondNumber);
+    },
+    @"cos":^{
+        _result = cos(secondNumber);
+    },
+    @"sqrt":^{
+        _result = sqrt(secondNumber);
+    },
+    @"+/-":^{
+        _result = secondNumber*-1;
+    },
+    @"!":^{
+        if (secondNumber>=0){
+            _result = factorial(secondNumber);
+        }
+    },
+    @"1/x":^{
+        if (secondNumber)
+        {
+            _result = (1/secondNumber);
+        }
+        
+    },
+    @"x^2":^{
         double base = secondNumber;
-        result = pow(base, 2);
-    }else if ([operation isEqualToString:@"x^y"]){
-        result = pow(firstNumber, secondNumber);
-    }
+        _result = pow(base, 2);
+    },
+    @"x^y":^{
+        _result = pow(firstNumber, secondNumber);
+    },
+                   
+    }[key] ?: ^{
+        NSLog(@"default");
+    })();
     
-    NSLog(@"Calc:\nNum1: %g\nOper: %@\nNum2: %g\nResult: %g",firstNumber,operation,secondNumber,result);
+    NSLog(@"Calc:\nNum1: %g\nOper: %@\nNum2: %g\nResult: %g",firstNumber,operation,secondNumber,_result);
     
-    return result;
+    return _result;
 }
 
 -(NSString*)formattedTextNumber:(NSString*)text numberOfFractionDigits:(int)precision{
