@@ -18,6 +18,7 @@
 -(void)formatEquation:(NSString *)valueForX;
 -(double)solveEquation;
 -(NSString*)displayEquation;
+-(void)addSignal: NSMutableArray;
 
 @property (nonatomic) NSMutableArray *equation;
 

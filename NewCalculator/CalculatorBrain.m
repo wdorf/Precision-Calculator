@@ -11,6 +11,7 @@
 @interface CalculatorBrain ()
 @property (nonatomic) double operand;
 @property (nonatomic) double result;
+@property NSMutableArray* tempEquation;
 @end
 
 
@@ -150,23 +151,23 @@ double factorial(double n)
 
 -(NSMutableArray *)solveEquationRecursive:(NSMutableArray *)equation{
     
-    NSMutableArray* tempEquation = [NSMutableArray arrayWithArray:equation];
+    _tempEquation = [NSMutableArray arrayWithArray:equation];
     
     BOOL isEquationSolved = NO;
     while (!isEquationSolved) {
         
-        while ([tempEquation containsObject:@"("]) {
+        while ([_tempEquation containsObject:@"("]) {
             
             //searching for numbers surrounded by parentheses
-            for (int i=1; i < (tempEquation.count-1); i++) {
-                id currentComponent = [tempEquation objectAtIndex:i];
+            for (int i=1; i < (_tempEquation.count-1); i++) {
+                id currentComponent = [_tempEquation objectAtIndex:i];
                 if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                    id nextComponent = [tempEquation objectAtIndex:i+1];
-                    id previousComponent = [tempEquation objectAtIndex:i-1];
+                    id nextComponent = [_tempEquation objectAtIndex:i+1];
+                    id previousComponent = [_tempEquation objectAtIndex:i-1];
                     if ( ([nextComponent isKindOfClass:[NSString class]]) && ([previousComponent isKindOfClass:[NSString class]]) ) {
                         if ( ([previousComponent isEqualToString:@"("]) && ([nextComponent isEqualToString:@")"]) ) {
-                            [tempEquation removeObjectAtIndex:i+1];
-                            [tempEquation removeObjectAtIndex:i-1];
+                            [_tempEquation removeObjectAtIndex:i+1];
+                            [_tempEquation removeObjectAtIndex:i-1];
                             i--;
                         }
                     }
@@ -174,16 +175,7 @@ double factorial(double n)
             }
             
             //add * signal where necessary
-            for (int i=0; i < (tempEquation.count-1); i++) {
-                id currentComponent = [tempEquation objectAtIndex:i];
-                
-                if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                    id nextComponent = [tempEquation objectAtIndex:i+1];
-                    if ([nextComponent isKindOfClass:[NSNumber class]]) {
-                        [tempEquation insertObject:@"*" atIndex:i+1];
-                    }
-                }
-            }
+            [self addSignal:_tempEquation];
             
             //searching for subEquation inside the equations
             int closingParenthesesPosition = 0;
@@ -193,8 +185,8 @@ double factorial(double n)
             BOOL foundOpeningParentheses = NO;
             
             //identifing the position of the most intern parentheses
-            while ((i < tempEquation.count)&&(!foundOpeningParentheses)) {
-                id currentElement = [tempEquation objectAtIndex:i];
+            while ((i < _tempEquation.count)&&(!foundOpeningParentheses)) {
+                id currentElement = [_tempEquation objectAtIndex:i];
                 if (!foundClosingParentheses) {
                     if ([currentElement isKindOfClass:[NSString class]]) {
                         if ([currentElement isEqualToString:@")"]) {
@@ -217,58 +209,49 @@ double factorial(double n)
             }
             
             //call recursively the solveEquationRecursive if necessary
-            if ([tempEquation containsObject:@"("]) {
-                NSMutableArray* newEquation = [NSMutableArray arrayWithArray:[tempEquation subarrayWithRange:NSMakeRange(openingParenthesesPosition+1, (closingParenthesesPosition-openingParenthesesPosition)-1)]];
+            if ([_tempEquation containsObject:@"("]) {
+                NSMutableArray* newEquation = [NSMutableArray arrayWithArray:[_tempEquation subarrayWithRange:NSMakeRange(openingParenthesesPosition+1, (closingParenthesesPosition-openingParenthesesPosition)-1)]];
                 NSArray* tempResult = [NSArray arrayWithArray:[self solveEquationRecursive:newEquation]];
-                [tempEquation removeObjectsInRange:NSMakeRange(openingParenthesesPosition+1, (closingParenthesesPosition-openingParenthesesPosition)-1)];
-                NSArray* firstPart = [tempEquation subarrayWithRange:NSMakeRange(0, openingParenthesesPosition+1)];
-                NSArray* secondPart = [tempEquation subarrayWithRange:NSMakeRange(openingParenthesesPosition+1,([tempEquation count]-openingParenthesesPosition)-1)];
-                tempEquation = [NSMutableArray arrayWithArray:firstPart];
-                [tempEquation addObjectsFromArray:tempResult];
-                [tempEquation addObjectsFromArray:secondPart];
+                [_tempEquation removeObjectsInRange:NSMakeRange(openingParenthesesPosition+1, (closingParenthesesPosition-openingParenthesesPosition)-1)];
+                NSArray* firstPart = [_tempEquation subarrayWithRange:NSMakeRange(0, openingParenthesesPosition+1)];
+                NSArray* secondPart = [_tempEquation subarrayWithRange:NSMakeRange(openingParenthesesPosition+1,([_tempEquation count]-openingParenthesesPosition)-1)];
+                _tempEquation = [NSMutableArray arrayWithArray:firstPart];
+                [_tempEquation addObjectsFromArray:tempResult];
+                [_tempEquation addObjectsFromArray:secondPart];
             }
             
         }
         
         //searching for factorial
-        for (int i=0; i < (tempEquation.count-1); i++) {
-            id currentComponent = [tempEquation objectAtIndex:i];
+        for (int i=0; i < (_tempEquation.count-1); i++) {
+            id currentComponent = [_tempEquation objectAtIndex:i];
             if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                id nextComponent = [tempEquation objectAtIndex:i+1];
+                id nextComponent = [_tempEquation objectAtIndex:i+1];
                 if ([nextComponent isKindOfClass:[NSString class]]) {
                     if ([nextComponent isEqualToString:@"!"]) {
                         double result = [self performOperation:@"!" firstOperand:0 secondOperand:[currentComponent doubleValue]];
-                        [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
-                        [tempEquation removeObjectAtIndex:i+1];
-                        [tempEquation removeObjectAtIndex:i+1];
+                        [_tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
+                        [_tempEquation removeObjectAtIndex:i+1];
+                        [_tempEquation removeObjectAtIndex:i+1];
                     }
                 }
             }
         }
         
         //add * signal where necessary
-        for (int i=0; i < (tempEquation.count-1); i++) {
-            id currentComponent = [tempEquation objectAtIndex:i];
-            
-            if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                id nextComponent = [tempEquation objectAtIndex:i+1];
-                if ([nextComponent isKindOfClass:[NSNumber class]]) {
-                    [tempEquation insertObject:@"*" atIndex:i+1];
-                }
-            }
-        }
+        [self addSignal:_tempEquation];
         
         //searching for trigonometric functions
-        for (int i=1; i < tempEquation.count; i++) {
-            id currentComponent = [tempEquation objectAtIndex:i];
+        for (int i=1; i < _tempEquation.count; i++) {
+            id currentComponent = [_tempEquation objectAtIndex:i];
             if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                id previousComponent = [tempEquation objectAtIndex:i-1];
+                id previousComponent = [_tempEquation objectAtIndex:i-1];
                 if ([previousComponent isKindOfClass:[NSString class]]) {
                     if ([@[@"sin", @"cos"] containsObject:previousComponent]) {
                         double result = [self performOperation:previousComponent firstOperand:0 secondOperand:[currentComponent doubleValue]];
-                        [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
-                        [tempEquation removeObjectAtIndex:i+1];
-                        [tempEquation removeObjectAtIndex:i-1];
+                        [_tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
+                        [_tempEquation removeObjectAtIndex:i+1];
+                        [_tempEquation removeObjectAtIndex:i-1];
                         i--;
                     }
                 }
@@ -276,30 +259,21 @@ double factorial(double n)
         }
         
         //add * signal where necessary
-        for (int i=0; i < (tempEquation.count-1); i++) {
-            id currentComponent = [tempEquation objectAtIndex:i];
-            
-            if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                id nextComponent = [tempEquation objectAtIndex:i+1];
-                if ([nextComponent isKindOfClass:[NSNumber class]]) {
-                    [tempEquation insertObject:@"*" atIndex:i+1];
-                }
-            }
-        }
+        [self addSignal:_tempEquation];
         
         
         //searching for square root
-        for (int i=1; i < tempEquation.count; i++) {
-            id currentComponent = [tempEquation objectAtIndex:i];
+        for (int i=1; i < _tempEquation.count; i++) {
+            id currentComponent = [_tempEquation objectAtIndex:i];
             
             if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                id previousComponent = [tempEquation objectAtIndex:i-1];
+                id previousComponent = [_tempEquation objectAtIndex:i-1];
                 if ( [previousComponent isKindOfClass:[NSString class]] ) {
                     if ([previousComponent isEqualToString:@"sqrt"]) {
                         double result = [self performOperation:previousComponent firstOperand:0 secondOperand:[currentComponent doubleValue]];
-                        [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
-                        [tempEquation removeObjectAtIndex:i+1];
-                        [tempEquation removeObjectAtIndex:i-1];
+                        [_tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
+                        [_tempEquation removeObjectAtIndex:i+1];
+                        [_tempEquation removeObjectAtIndex:i-1];
                         i--;
                     }
                 }
@@ -307,32 +281,23 @@ double factorial(double n)
         }
         
         //add * signal where necessary
-        for (int i=0; i < (tempEquation.count-1); i++) {
-            id currentComponent = [tempEquation objectAtIndex:i];
-            
-            if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                id nextComponent = [tempEquation objectAtIndex:i+1];
-                if ([nextComponent isKindOfClass:[NSNumber class]]) {
-                    [tempEquation insertObject:@"*" atIndex:i+1];
-                }
-            }
-        }
+        [self addSignal:_tempEquation];
         
         //searching for exponential
-        for (int i=0; i < (tempEquation.count-1); i++) {
-            id currentComponent = [tempEquation objectAtIndex:i];
+        for (int i=0; i < (_tempEquation.count-1); i++) {
+            id currentComponent = [_tempEquation objectAtIndex:i];
             
             if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                id nextComponent = [tempEquation objectAtIndex:i+1];
+                id nextComponent = [_tempEquation objectAtIndex:i+1];
                 if ([nextComponent isKindOfClass:[NSString class]]) {
                     if ([nextComponent isEqualToString:@"^"]) {
-                        id nextNextComponent = [tempEquation objectAtIndex:i+2];
+                        id nextNextComponent = [_tempEquation objectAtIndex:i+2];
                         if ([nextNextComponent isKindOfClass:[NSNumber class]]) {
                             double result = [self performOperation:@"x^y" firstOperand:[currentComponent doubleValue] secondOperand:[nextNextComponent doubleValue]];
-                            [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
-                            [tempEquation removeObjectAtIndex:i+1];
-                            [tempEquation removeObjectAtIndex:i+1];
-                            [tempEquation removeObjectAtIndex:i+1];
+                            [_tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
+                            [_tempEquation removeObjectAtIndex:i+1];
+                            [_tempEquation removeObjectAtIndex:i+1];
+                            [_tempEquation removeObjectAtIndex:i+1];
                         }
                     }
                 }
@@ -340,32 +305,23 @@ double factorial(double n)
         }
         
         //add * signal where necessary
-        for (int i=0; i < (tempEquation.count-1); i++) {
-            id currentComponent = [tempEquation objectAtIndex:i];
-            
-            if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                id nextComponent = [tempEquation objectAtIndex:i+1];
-                if ([nextComponent isKindOfClass:[NSNumber class]]) {
-                    [tempEquation insertObject:@"*" atIndex:i+1];
-                }
-            }
-        }
+        [self addSignal:_tempEquation];
         
         //searching for multiplication and division
-        for (int i=0; i < (tempEquation.count-1); i++) {
-            id currentComponent = [tempEquation objectAtIndex:i];
+        for (int i=0; i < (_tempEquation.count-1); i++) {
+            id currentComponent = [_tempEquation objectAtIndex:i];
             
             if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                id nextComponent = [tempEquation objectAtIndex:i+1];
+                id nextComponent = [_tempEquation objectAtIndex:i+1];
                 if ([nextComponent isKindOfClass:[NSString class]]) {
                     if ([@[@"*",@"/"] containsObject:nextComponent]) {
-                        id nextNextComponent = [tempEquation objectAtIndex:i+2];
+                        id nextNextComponent = [_tempEquation objectAtIndex:i+2];
                         if ([nextNextComponent isKindOfClass:[NSNumber class]]) {
                             double result = [self performOperation:nextComponent firstOperand:[currentComponent doubleValue] secondOperand:[nextNextComponent doubleValue]];
-                            [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
-                            [tempEquation removeObjectAtIndex:i+1];
-                            [tempEquation removeObjectAtIndex:i+1];
-                            [tempEquation removeObjectAtIndex:i+1];
+                            [_tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
+                            [_tempEquation removeObjectAtIndex:i+1];
+                            [_tempEquation removeObjectAtIndex:i+1];
+                            [_tempEquation removeObjectAtIndex:i+1];
                         }
                     }
                 }
@@ -373,48 +329,52 @@ double factorial(double n)
         }
         
         //add * signal where necessary
-        for (int i=0; i < (tempEquation.count-1); i++) {
-            id currentComponent = [tempEquation objectAtIndex:i];
-            
-            if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                id nextComponent = [tempEquation objectAtIndex:i+1];
-                if ([nextComponent isKindOfClass:[NSNumber class]]) {
-                    [tempEquation insertObject:@"*" atIndex:i+1];
-                }
-            }
-        }
+        [self addSignal:_tempEquation];
         
         //searching for addition and subtraction
-        for (int i=0; i < (tempEquation.count-1); i++) {
-            id currentComponent = [tempEquation objectAtIndex:i];
+        for (int i=0; i < (_tempEquation.count-1); i++) {
+            id currentComponent = [_tempEquation objectAtIndex:i];
             
             if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                id nextComponent = [tempEquation objectAtIndex:i+1];
+                id nextComponent = [_tempEquation objectAtIndex:i+1];
                 if ([nextComponent isKindOfClass:[NSString class]]) {
                     if ([@[@"+",@"-"] containsObject:nextComponent]) {
-                        id nextNextComponent = [tempEquation objectAtIndex:i+2];
+                        id nextNextComponent = [_tempEquation objectAtIndex:i+2];
                         if ([nextNextComponent isKindOfClass:[NSNumber class]]) {
                             double result = [self performOperation:nextComponent firstOperand:[currentComponent doubleValue] secondOperand:[nextNextComponent doubleValue]];
-                            [tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
-                            [tempEquation removeObjectAtIndex:i+1];
-                            [tempEquation removeObjectAtIndex:i+1];
-                            [tempEquation removeObjectAtIndex:i+1];
+                            [_tempEquation insertObject:[NSNumber numberWithDouble:result] atIndex:i];
+                            [_tempEquation removeObjectAtIndex:i+1];
+                            [_tempEquation removeObjectAtIndex:i+1];
+                            [_tempEquation removeObjectAtIndex:i+1];
                         }
                     }
                 }
             }
         }
         
-        if (tempEquation.count==1) {
+        if (_tempEquation.count==1) {
             isEquationSolved = YES;
         }
     }
     
-    return tempEquation;
+    return _tempEquation;
 }
 
 -(double)solveEquation{
     return [[[self solveEquationRecursive:_equation] firstObject] doubleValue];
+}
+
+-(void)addSignal: NSMutableArray{
+    for (int i=0; i < (_tempEquation.count-1); i++) {
+        id currentComponent = [_tempEquation objectAtIndex:i];
+        
+        if ([currentComponent isKindOfClass:[NSNumber class]]) {
+            id nextComponent = [_tempEquation objectAtIndex:i+1];
+            if ([nextComponent isKindOfClass:[NSNumber class]]) {
+                [_tempEquation insertObject:@"*" atIndex:i+1];
+            }
+        }
+    }
 }
 
 @end
