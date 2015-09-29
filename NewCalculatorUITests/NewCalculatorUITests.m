@@ -258,6 +258,21 @@
     XCUIElement *display = app.staticTexts[@"1"];
     XCTAssertTrue(display.exists);
 }
+- (void)testattributeValueForX{
+    //test many different operations in successionn
 
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [app.buttons[@"3"] tap];
+    [app.buttons[@"x"] tap];
+    [app.buttons[@"6"] tap];
+    
+    XCUIElement *button = app.buttons[@"="];
+    [button tap];
+    [app.buttons[@"+"] tap];
+    [app.buttons[@"2"] tap];
+    [button tap];
+    
+}
 
 @end
