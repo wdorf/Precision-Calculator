@@ -281,14 +281,17 @@ double memory = 0;
         self.numericDisplay.text = @"0";
         self.operation = @"";
         if ([self.brain.equation containsObject:@"x"]) {
+            NSLog(@"inside if");
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Value for X" message:@"Type the value for X on the numeric display and press (x=) again to solve the equation" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
             self.isSolvePressed = YES;
         }else{
+            NSLog(@"inside else");
             [self doesntoContainX];
             [self equalPressed:sender];
         }
     }else {
+        NSLog(@"outside else");
         [self doesntoContainX];
         [self equalPressed:sender];
     }
