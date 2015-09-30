@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		24426AAC1BBC5BC3008AC2A4 /* smellTesting_Dinesh.m in Sources */ = {isa = PBXBuildFile; fileRef = 24426AAB1BBC5BC3008AC2A4 /* smellTesting_Dinesh.m */; };
+		24426ABA1BBC63EF008AC2A4 /* smellTesting_Abdulrahman.m in Sources */ = {isa = PBXBuildFile; fileRef = 24426AB91BBC63EF008AC2A4 /* smellTesting_Abdulrahman.m */; };
 		F11DA11D19DF6896004C7F5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F11DA11C19DF6896004C7F5B /* main.m */; };
 		F11DA12019DF6896004C7F5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F11DA11F19DF6896004C7F5B /* AppDelegate.m */; };
 		F11DA12319DF6896004C7F5B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F11DA12219DF6896004C7F5B /* ViewController.m */; };
@@ -20,6 +21,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		24426AAE1BBC5BC3008AC2A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F11DA10F19DF6896004C7F5B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F11DA11619DF6896004C7F5B;
+			remoteInfo = NewCalculator;
+		};
+		24426ABC1BBC63EF008AC2A4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F11DA10F19DF6896004C7F5B /* Project object */;
 			proxyType = 1;
@@ -39,6 +47,9 @@
 		24426AA91BBC5BC3008AC2A4 /* smellTesting_Dinesh.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = smellTesting_Dinesh.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		24426AAB1BBC5BC3008AC2A4 /* smellTesting_Dinesh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = smellTesting_Dinesh.m; sourceTree = "<group>"; };
 		24426AAD1BBC5BC3008AC2A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24426AB71BBC63EF008AC2A4 /* smellTesting_Abdulrahman.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = smellTesting_Abdulrahman.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		24426AB91BBC63EF008AC2A4 /* smellTesting_Abdulrahman.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = smellTesting_Abdulrahman.m; sourceTree = "<group>"; };
+		24426ABB1BBC63EF008AC2A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F11DA11719DF6896004C7F5B /* NewCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11DA11B19DF6896004C7F5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F11DA11C19DF6896004C7F5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -58,6 +69,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		24426AA61BBC5BC3008AC2A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24426AB41BBC63EF008AC2A4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -90,12 +108,22 @@
 			path = smellTesting_Dinesh;
 			sourceTree = "<group>";
 		};
+		24426AB81BBC63EF008AC2A4 /* smellTesting_Abdulrahman */ = {
+			isa = PBXGroup;
+			children = (
+				24426AB91BBC63EF008AC2A4 /* smellTesting_Abdulrahman.m */,
+				24426ABB1BBC63EF008AC2A4 /* Info.plist */,
+			);
+			path = smellTesting_Abdulrahman;
+			sourceTree = "<group>";
+		};
 		F11DA10E19DF6896004C7F5B = {
 			isa = PBXGroup;
 			children = (
 				F11DA11919DF6896004C7F5B /* NewCalculator */,
 				F11DA13319DF6896004C7F5B /* NewCalculatorTests */,
 				24426AAA1BBC5BC3008AC2A4 /* smellTesting_Dinesh */,
+				24426AB81BBC63EF008AC2A4 /* smellTesting_Abdulrahman */,
 				F11DA11819DF6896004C7F5B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -106,6 +134,7 @@
 				F11DA11719DF6896004C7F5B /* NewCalculator.app */,
 				F11DA13019DF6896004C7F5B /* NewCalculatorTests.xctest */,
 				24426AA91BBC5BC3008AC2A4 /* smellTesting_Dinesh.xctest */,
+				24426AB71BBC63EF008AC2A4 /* smellTesting_Abdulrahman.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -174,6 +203,24 @@
 			productReference = 24426AA91BBC5BC3008AC2A4 /* smellTesting_Dinesh.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		24426AB61BBC63EF008AC2A4 /* smellTesting_Abdulrahman */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24426AC01BBC63EF008AC2A4 /* Build configuration list for PBXNativeTarget "smellTesting_Abdulrahman" */;
+			buildPhases = (
+				24426AB31BBC63EF008AC2A4 /* Sources */,
+				24426AB41BBC63EF008AC2A4 /* Frameworks */,
+				24426AB51BBC63EF008AC2A4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				24426ABD1BBC63EF008AC2A4 /* PBXTargetDependency */,
+			);
+			name = smellTesting_Abdulrahman;
+			productName = smellTesting_Abdulrahman;
+			productReference = 24426AB71BBC63EF008AC2A4 /* smellTesting_Abdulrahman.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		F11DA11619DF6896004C7F5B /* NewCalculator */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F11DA13A19DF6896004C7F5B /* Build configuration list for PBXNativeTarget "NewCalculator" */;
@@ -222,6 +269,10 @@
 						CreatedOnToolsVersion = 7.0;
 						TestTargetID = F11DA11619DF6896004C7F5B;
 					};
+					24426AB61BBC63EF008AC2A4 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = F11DA11619DF6896004C7F5B;
+					};
 					F11DA11619DF6896004C7F5B = {
 						CreatedOnToolsVersion = 6.0.1;
 					};
@@ -247,12 +298,20 @@
 				F11DA11619DF6896004C7F5B /* NewCalculator */,
 				F11DA12F19DF6896004C7F5B /* NewCalculatorTests */,
 				24426AA81BBC5BC3008AC2A4 /* smellTesting_Dinesh */,
+				24426AB61BBC63EF008AC2A4 /* smellTesting_Abdulrahman */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		24426AA71BBC5BC3008AC2A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24426AB51BBC63EF008AC2A4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -287,6 +346,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		24426AB31BBC63EF008AC2A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24426ABA1BBC63EF008AC2A4 /* smellTesting_Abdulrahman.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F11DA11319DF6896004C7F5B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -313,6 +380,11 @@
 			isa = PBXTargetDependency;
 			target = F11DA11619DF6896004C7F5B /* NewCalculator */;
 			targetProxy = 24426AAE1BBC5BC3008AC2A4 /* PBXContainerItemProxy */;
+		};
+		24426ABD1BBC63EF008AC2A4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F11DA11619DF6896004C7F5B /* NewCalculator */;
+			targetProxy = 24426ABC1BBC63EF008AC2A4 /* PBXContainerItemProxy */;
 		};
 		F11DA13219DF6896004C7F5B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -367,6 +439,38 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "gannon.edu.smellTesting-Dinesh";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = NewCalculator;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+		24426ABE1BBC63EF008AC2A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = smellTesting_Abdulrahman/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "gannon.edu.smellTesting-Abdulrahman";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = NewCalculator;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		24426ABF1BBC63EF008AC2A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = smellTesting_Abdulrahman/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "gannon.edu.smellTesting-Abdulrahman";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = NewCalculator;
 				USES_XCTRUNNER = YES;
@@ -511,6 +615,15 @@
 			buildConfigurations = (
 				24426AB01BBC5BC3008AC2A4 /* Debug */,
 				24426AB11BBC5BC3008AC2A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		24426AC01BBC63EF008AC2A4 /* Build configuration list for PBXNativeTarget "smellTesting_Abdulrahman" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24426ABE1BBC63EF008AC2A4 /* Debug */,
+				24426ABF1BBC63EF008AC2A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
