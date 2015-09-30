@@ -35,8 +35,7 @@ double memory = 0;
     self.isOperatorPressed = NO;
     NSString* digit = [sender currentTitle];
     NSLog(@"User touched: %@",digit);
-    
-    //add text to numeric display, if isInTheMiddleOfEnteringANumber, treating when the user press Dot
+
     if (self.isInTheMiddleOfEnteringANumber) {
         if (![digit isEqualToString:@"."]) {
             self.numericDisplay.text = [self.numericDisplay.text stringByAppendingString:digit];
@@ -77,10 +76,8 @@ double memory = 0;
 
 - (IBAction)operationPressed:(UIButton *)sender {
     
-    //round the value if fixedPrecisionMode is selected
     [self updateFixedPrecisionMode];
     
-    //press enter (if is not pressed), save the number on the brain
     if (!self.isOperatorPressed) {
         if (!self.isEqualPressed) {
             [self equalPressed:sender];
@@ -92,29 +89,24 @@ double memory = 0;
         self.isEqualPressed = NO;
         self.userPressedDot = NO;
     }
-    
-    //update the precision, if dynamicMode is selected
+
     [self updateDynamicPrecisionMode];
-    
-    //round the value if some precisionMode is selected
+
     [self updateWithAPrecisionMode];
     
 }
 
 - (IBAction)quickOperationPressed:(UIButton *)sender {
-    //round the value if fixedPrecisionMode is selected
+
     if (([self.fixedPrecisionMode isOn]))
     {
         self.numericDisplay.text = [self.brain formattedTextNumber:self.numericDisplay.text numberOfFractionDigits:[self.lblDecimalPlates.text intValue]];
     }
-    
-    //perfomr operation and print value
+
     self.numericDisplay.text = [NSString stringWithFormat:@"%1.6g",[self.brain performOperation:[sender currentTitle] firstOperand:self.operand secondOperand:[self.numericDisplay.text doubleValue]]];
-    
-    //update the precision, if dynamicMode is selected
+
     [self updateDynamicPrecisionMode];
-    
-    //round the value if some precisionMode is selected
+
     [self updateWithAPrecisionMode];
     
     self.isInTheMiddleOfEnteringANumber = NO;
@@ -129,23 +121,18 @@ double memory = 0;
     if ([sender.currentTitle isEqualToString:@"="]) {
         [self equationDigitPressed:sender];
     }
-    
-    //round the value if some precisionMode is selected
+
     [self updateFixedPrecisionMode];
-    
-    //perform operation, print number and save the second number in a temp var
+
     double numTemp = [self.numericDisplay.text doubleValue];
     self.numericDisplay.text = [NSString stringWithFormat:@"%1.6g",[self.brain performOperation:self.operation firstOperand:self.operand secondOperand:[self.numericDisplay.text doubleValue]]];
-    
-    //update the precision, if dynamicMode is selected
+
     [self updateDynamicPrecisionMode];
-    //round the value if some precisionMode is selected
+
     [self updateWithAPrecisionMode];
-    
-    //send the value to the brain if equal is pressed for the first time
+
     if (self.isInTheMiddleOfEnteringANumber) {
         self.operand = numTemp;
-        //[self.brain pushOperand:numTemp];
     }
     
     self.isInTheMiddleOfEnteringANumber = NO;

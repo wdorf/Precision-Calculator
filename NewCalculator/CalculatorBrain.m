@@ -42,26 +42,21 @@ double factorial(double n)
     
     ((void (^)())@{
     @"+" : ^{
-        //operation
         _result = firstNumber + secondNumber;
     },
     @"-" : ^{
-        //operation
         _result = firstNumber - secondNumber;
     },
     @"*" : ^{
-        //operation
         _result = firstNumber * secondNumber;
     },
     @"/" : ^{
-        //operation
         if (secondNumber)
         {
             _result = firstNumber / secondNumber;
         }
     },
     @"sin" : ^{
-        //operation
         _result = sin(secondNumber);
     },
     @"cos":^{
@@ -134,8 +129,7 @@ double factorial(double n)
 
 -(void)formatEquation:(NSString *)valueForX{
     NSNumber *number = [NSNumber numberWithDouble:[valueForX doubleValue]];
-    
-    //substitute all the x's for valueForX
+
     for (int i=0; i < _equation.count; i++) {
         id currentComponent = [_equation objectAtIndex:i];
         if ([currentComponent isKindOfClass:[NSString class]]) {
@@ -157,21 +151,17 @@ double factorial(double n)
     while (!isEquationSolved) {
         
         while ([_tempEquation containsObject:@"("]) {
-            
-            //searching for numbers surrounded by parentheses
+
             [self searchForNumsSurroundedByParenthesis:_tempEquation];
-            
-            //add * signal where necessary
+
             [self addSignal:_tempEquation];
-            
-            //searching for subEquation inside the equations
+
             int closingParenthesesPosition = 0;
             int openingParenthesesPosition = 0;
             int i= 0;
             BOOL foundClosingParentheses = NO;
             BOOL foundOpeningParentheses = NO;
-            
-            //identifing the position of the most intern parentheses
+
             while ((i < _tempEquation.count)&&(!foundOpeningParentheses)) {
                 id currentElement = [_tempEquation objectAtIndex:i];
                 if (!foundClosingParentheses) {
@@ -194,8 +184,7 @@ double factorial(double n)
                     i--;
                 }
             }
-            
-            //call recursively the solveEquationRecursive if necessary
+
             if ([_tempEquation containsObject:@"("]) {
                 NSMutableArray* newEquation = [NSMutableArray arrayWithArray:[_tempEquation subarrayWithRange:NSMakeRange(openingParenthesesPosition+1, (closingParenthesesPosition-openingParenthesesPosition)-1)]];
                 NSArray* tempResult = [NSArray arrayWithArray:[self solveEquationRecursive:newEquation]];
@@ -208,39 +197,27 @@ double factorial(double n)
             }
             
         }
-        
-        //searching for factorial
+
         [self searchForFactorial:_tempEquation];
-        
-        //add * signal where necessary
+
         [self addSignal:_tempEquation];
-        
-        //searching for trigonometric functions
+
         [self searchForTrigFunc:_tempEquation];
-        
-        //add * signal where necessary
+
         [self addSignal:_tempEquation];
-        
-        
-        //searching for square root
+
         [self searchForSquareRoot:_tempEquation];
-        
-        //add * signal where necessary
+
         [self addSignal:_tempEquation];
-        
-        //searching for exponential
+
         [self searchForExponential:_tempEquation];
-        
-        //add * signal where necessary
+
         [self addSignal:_tempEquation];
-        
-        //searching for multiplication and division
+
         [self searchForMultAndDiv:_tempEquation];
-        
-        //add * signal where necessary
+
         [self addSignal:_tempEquation];
-        
-        //searching for addition and subtraction
+
         [self searchForAddAndSub: _tempEquation];
         
         if (_tempEquation.count==1) {
@@ -269,7 +246,7 @@ double factorial(double n)
 }
 
 -(void)searchForNumsSurroundedByParenthesis: NSMutableArray{
-    //searching for numbers surrounded by parentheses
+
     for (int i=1; i < (_tempEquation.count-1); i++) {
         id currentComponent = [_tempEquation objectAtIndex:i];
         if ([currentComponent isKindOfClass:[NSNumber class]]) {
@@ -287,7 +264,7 @@ double factorial(double n)
 }
 
 -(void)searchForFactorial: NSMutableArray{
-    //searching for factorial
+
     for (int i=0; i < (_tempEquation.count-1); i++) {
         id currentComponent = [_tempEquation objectAtIndex:i];
         if ([currentComponent isKindOfClass:[NSNumber class]]) {
@@ -305,7 +282,7 @@ double factorial(double n)
 }
 
 -(void)searchForTrigFunc: NSMutableArray{
-    //searching for trigonometric functions
+
     for (int i=1; i < _tempEquation.count; i++) {
         id currentComponent = [_tempEquation objectAtIndex:i];
         if ([currentComponent isKindOfClass:[NSNumber class]]) {
@@ -324,7 +301,7 @@ double factorial(double n)
 }
 
 -(void)searchForSquareRoot: NSMutableArray{
-    //search for square root
+
     for (int i=1; i < _tempEquation.count; i++) {
         id currentComponent = [_tempEquation objectAtIndex:i];
         
@@ -344,7 +321,7 @@ double factorial(double n)
 }
 
 -(void)searchForExponential: NSMutableArray{
-    //searching for exponential
+
     for (int i=0; i < (_tempEquation.count-1); i++) {
         id currentComponent = [_tempEquation objectAtIndex:i];
         
@@ -367,7 +344,7 @@ double factorial(double n)
 }
 
 -(void)searchForMultAndDiv: NSMutableArray{
-    //searching for multiplication and division
+
     for (int i=0; i < (_tempEquation.count-1); i++) {
         id currentComponent = [_tempEquation objectAtIndex:i];
         
@@ -390,7 +367,7 @@ double factorial(double n)
 }
 
 -(void)searchForAddAndSub: NSMutableArray{
-    //searching for addition and subtraction
+
     for (int i=0; i < (_tempEquation.count-1); i++) {
         id currentComponent = [_tempEquation objectAtIndex:i];
         
