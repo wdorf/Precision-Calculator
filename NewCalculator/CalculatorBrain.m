@@ -141,16 +141,8 @@ double factorial(double positiveNum)
             }
             
             //add * signal where necessary
-            for (int i=0; i < (tempEquation.count-1); i++) {
-                id currentComponent = [tempEquation objectAtIndex:i];
-                
-                if ([currentComponent isKindOfClass:[NSNumber class]]) {
-                    id nextComponent = [tempEquation objectAtIndex:i+1];
-                    if ([nextComponent isKindOfClass:[NSNumber class]]) {
-                        [tempEquation insertObject:@"*" atIndex:i+1];
-                    }
-                }
-            }
+            addSignalWhereNecessary(tempEquation);
+            
             
             //searching for subEquation inside the equations
             int closingParenthesesPosition = 0;
@@ -380,6 +372,20 @@ double factorial(double positiveNum)
     return tempEquation;
 }
 
+void addSignalWhereNecessary(NSMutableArray *tempEquation){
+    
+    for (int i=0; i < (tempEquation.count-1); i++) {
+        id currentComponent = [tempEquation objectAtIndex:i];
+        
+        if ([currentComponent isKindOfClass:[NSNumber class]]) {
+            id nextComponent = [tempEquation objectAtIndex:i+1];
+            if ([nextComponent isKindOfClass:[NSNumber class]]) {
+                [tempEquation insertObject:@"*" atIndex:i+1];
+            }
+        }
+    }
+    
+}
 -(double)solveEquation{
     return [[[self solveEquationRecursive:_equation] firstObject] doubleValue];
 }
