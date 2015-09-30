@@ -50,4 +50,22 @@
     
 }
 
+- (void)testDivision {
+    
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [app.buttons[@"("] tap];
+    
+    XCUIElement *button = app.buttons[@"9"];
+    [button tap];
+    [app.buttons[@"*"] tap];
+    [app.buttons[@"8"] tap];
+    [app.buttons[@")"] tap];
+    [app.buttons[@"/"] tap];
+    [button tap];
+    [app.buttons[@"="] tap];
+    XCUIElement *display = app.staticTexts[@"8"];
+    XCTAssertTrue(display.exists);
+    
+}
 @end
