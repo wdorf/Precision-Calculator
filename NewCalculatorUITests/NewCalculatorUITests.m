@@ -47,11 +47,9 @@
     XCUIElement *display = app.staticTexts[@"56"];
     XCTAssertTrue(display.exists);
     
-    
 }
 
 - (void)testDivision {
-    
     
     XCUIApplication *app = [[XCUIApplication alloc] init];
     [app.buttons[@"("] tap];
@@ -68,4 +66,32 @@
     XCTAssertTrue(display.exists);
     
 }
+
+- (void)testFactorialSqrtPrecisionMode {
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    XCUIElement *testeButton = [[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:0];
+    [testeButton tap];
+    [app.buttons[@"4"] tap];
+    [app.buttons[@"!"] tap];
+    [app.buttons[@"sqrt"] tap];
+    XCUIElement *display = app.staticTexts[@"4.90"];
+    XCTAssertTrue(display.exists);
+}
+
+- (void)testSinCos{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [app.buttons[@"1"] tap];
+    [app.buttons[@"."] tap];
+    [app.buttons[@"5"] tap];
+    [app.buttons[@"7"] tap];
+    [app.buttons[@"sin"] tap];
+    XCUIElement *display = app.staticTexts[@"1"];
+    XCTAssertTrue(display.exists);
+    [app.buttons[@"C"] tap];
+    [app.buttons[@"cos"] tap];
+    XCTAssertTrue(display.exists);    
+}
+
 @end
