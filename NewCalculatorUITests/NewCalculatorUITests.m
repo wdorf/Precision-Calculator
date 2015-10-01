@@ -31,10 +31,40 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
-
-- (void)testExample {
-    // Use recording to get started writing UI tests.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testAddition {
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [app.buttons[@"2"] tap];
+    [app.buttons[@"+"] tap];
+    [app.buttons[@"3"] tap];
+    [app.buttons[@"="] tap];
+    XCTAssert(app.staticTexts[@"5"].exists);
 }
+- (void)testMultiplication{
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [app.buttons[@"2"] tap];
+    [app.buttons[@"*"] tap];
+    [app.buttons[@"3"] tap];
+    [app.buttons[@"="] tap];
+    XCTAssert(app.staticTexts[@"6"].exists);
+}
+- (void)testSubtraction {
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [app.buttons[@"2"] tap];
+    [app.buttons[@"-"] tap];
+    [app.buttons[@"3"] tap];
+    [app.buttons[@"="] tap];
+    XCTAssert(app.staticTexts[@"-1"].exists);
+    
+}
+- (void)testDivision {
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [app.buttons[@"3"] tap];
+    [app.buttons[@"/"] tap];
+    [app.buttons[@"3"] tap];
+    [app.buttons[@"="] tap];
+    XCTAssert(app.staticTexts[@"1"].exists);
+}
+
+
 
 @end
