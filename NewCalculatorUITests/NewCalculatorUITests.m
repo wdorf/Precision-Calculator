@@ -31,6 +31,7 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
+
 - (void)testAddition {
     XCUIApplication *app = [[XCUIApplication alloc] init];
     [app.buttons[@"2"] tap];
@@ -64,7 +65,4 @@
     [app.buttons[@"="] tap];
     XCTAssert(app.staticTexts[@"1"].exists);
 }
-
-
-
 @end
