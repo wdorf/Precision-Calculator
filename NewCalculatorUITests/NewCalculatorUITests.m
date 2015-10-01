@@ -65,4 +65,25 @@
     [app.buttons[@"="] tap];
     XCTAssert(app.staticTexts[@"1"].exists);
 }
+- (void)testTestFixedPrecisionMood {
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    
+    XCUIElement *testeButton = [[[[app.otherElements containingType:XCUIElementTypeStaticText identifier:@"0"] childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"Teste"] elementBoundByIndex:0];
+    [testeButton tap];
+    XCTAssert(testeButton.enabled);
+    
+    XCUIElement *incrementButton = app.buttons[@"Increment"];
+    [incrementButton tap];
+    [incrementButton tap];
+    [app.staticTexts[@"4"] tap];
+    XCTAssert(app.staticTexts[@"4"].exists);
+    
+    XCUIElement *decrementButton = app.buttons[@"Decrement"];
+    [decrementButton tap];
+    [decrementButton tap];
+    [app.staticTexts[@"2"] tap];
+    XCTAssert(app.staticTexts[@"2"].exists);
+    [testeButton tap];
+//    XCTAssert(app.staticTexts[@"2"].exists);
+}
 @end
