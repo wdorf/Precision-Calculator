@@ -32,7 +32,7 @@
     [super tearDown];
 }
 
-- (void)testAyoob1 {
+- (void)test1 {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     
@@ -67,7 +67,7 @@
         XCTAssertTrue(display.exists);
     }
 
-- (void)testAyoob2 {
+- (void)test2 {
            // Use recording to get started writing UI tests.
            // Use XCTAssert and related functions to verify your tests produce the correct results.
     
