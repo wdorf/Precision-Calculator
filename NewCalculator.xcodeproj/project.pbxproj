@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		214493F61BBB6B9800AE131E /* NewCalculatorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 214493F51BBB6B9800AE131E /* NewCalculatorUITests.m */; };
 		F11DA11D19DF6896004C7F5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F11DA11C19DF6896004C7F5B /* main.m */; };
 		F11DA12019DF6896004C7F5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F11DA11F19DF6896004C7F5B /* AppDelegate.m */; };
 		F11DA12319DF6896004C7F5B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F11DA12219DF6896004C7F5B /* ViewController.m */; };
@@ -37,8 +36,6 @@
 
 /* Begin PBXFileReference section */
 		214493F31BBB6B9800AE131E /* NewCalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewCalculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		214493F51BBB6B9800AE131E /* NewCalculatorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewCalculatorUITests.m; sourceTree = "<group>"; };
-		214493F71BBB6B9800AE131E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F11DA11719DF6896004C7F5B /* NewCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11DA11B19DF6896004C7F5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F11DA11C19DF6896004C7F5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -81,21 +78,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		214493F41BBB6B9800AE131E /* NewCalculatorUITests */ = {
-			isa = PBXGroup;
-			children = (
-				214493F51BBB6B9800AE131E /* NewCalculatorUITests.m */,
-				214493F71BBB6B9800AE131E /* Info.plist */,
-			);
-			path = NewCalculatorUITests;
-			sourceTree = "<group>";
-		};
 		F11DA10E19DF6896004C7F5B = {
 			isa = PBXGroup;
 			children = (
 				F11DA11919DF6896004C7F5B /* NewCalculator */,
 				F11DA13319DF6896004C7F5B /* NewCalculatorTests */,
-				214493F41BBB6B9800AE131E /* NewCalculatorUITests */,
 				F11DA11819DF6896004C7F5B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -283,7 +270,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				214493F61BBB6B9800AE131E /* NewCalculatorUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +503,7 @@
 				214493FB1BBB6B9800AE131E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F11DA11219DF6896004C7F5B /* Build configuration list for PBXProject "NewCalculator" */ = {
 			isa = XCConfigurationList;
