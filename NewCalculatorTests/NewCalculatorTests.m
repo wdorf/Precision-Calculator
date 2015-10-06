@@ -25,10 +25,26 @@
     [super tearDown];
 }
 
-- (void)testExample {
+- (void)testDataClump{
     // This is an example of a functional test case.
     XCTAssert(YES, @"Pass");
 }
+
+- (void)testNumberedVariables{
+    // This is an example of a functional test case.
+    XCTAssert(YES, @"Pass");
+}
+
+- (void)testDuplicateCode{
+    // This is an example of a functional test case.
+    XCTAssert(YES, @"Pass");
+}
+
+- (void)testConstantEmbeddedInCode{
+    // This is an example of a functional test case.
+    XCTAssert(YES, @"Pass");
+}
+
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
