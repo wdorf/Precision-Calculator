@@ -62,7 +62,7 @@
     [viewController operationPressed:[calc_view viewWithTag: 11]];  // *
     [viewController numPressed:[calc_view viewWithTag: 3]];  // 3
     [viewController equalPressed:[calc_view viewWithTag: 11]];  // =
-    XCTAssertTrue([[viewController.numericDisplay text] isEqualToString:@"9"], @"Part 1 failed.");
+    XCTAssertTrue([[viewController.numericDisplay text] isEqualToString:@"18"], @"Part 2 failed.");
     
 }
 - (void) testSubtraction {
@@ -71,7 +71,7 @@
     [viewController operationPressed:[calc_view viewWithTag: 14]];  // -
     [viewController numPressed:[calc_view viewWithTag: 3]];  // 3
     [viewController equalPressed:[calc_view viewWithTag: 11]];  // =
-    XCTAssertTrue([[viewController.numericDisplay text] isEqualToString:@"9"], @"Part 1 failed.");
+    XCTAssertTrue([[viewController.numericDisplay text] isEqualToString:@"3"], @"Part 3 failed.");
     
 }
 - (void) testDivision {
@@ -80,7 +80,7 @@
     [viewController operationPressed:[calc_view viewWithTag: 12]];  // /
     [viewController numPressed:[calc_view viewWithTag: 3]];  // 3
     [viewController equalPressed:[calc_view viewWithTag: 11]];  // =
-    XCTAssertTrue([[viewController.numericDisplay text] isEqualToString:@"9"], @"Part 1 failed.");
+    XCTAssertTrue([[viewController.numericDisplay text] isEqualToString:@"2"], @"Part 4 failed.");
 }
 
 
