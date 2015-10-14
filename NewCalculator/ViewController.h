@@ -20,8 +20,20 @@
 @property (weak, nonatomic) IBOutlet UILabel *equationDisplay;
 
 - (IBAction)numPressed:(UIButton*)sender;
+- (IBAction)clear;
 - (IBAction)operationPressed:(UIButton *)sender;
+- (IBAction)quickOperationPressed:(UIButton *)sender ;
 - (IBAction)equalPressed:(UIButton *)sender;
+- (IBAction)piPressed;
+- (IBAction)memoryManager:(UIButton *)sender;
+- (IBAction)chgFixedPrecisionMode:(UISwitch *)sender;
+- (IBAction)chgDynamicPrecisionMode:(UISwitch *)sender;
+- (IBAction)chgPrecision:(UIStepper *)sender;
+- (IBAction)equationDigitPressed:(UIButton *)sender;
+- (IBAction)inversePressed:(UIButton *)sender;
+- (IBAction)powerActionPressed:(UIButton *)sender;
+- (IBAction)delPressed:(UIButton *)sender;
+- (IBAction)atributeValueForX:(UIButton *)sender;
 
 @end
 

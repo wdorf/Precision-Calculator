@@ -24,7 +24,7 @@
 @interface NewCalculatorTests : XCTestCase
 {
 @private
-    AppDelegate    *appDelegate;
+    AppDelegate    *app_delegate;
     ViewController *viewController;
     UIView             *calc_view;
     
@@ -35,7 +35,7 @@
 @implementation NewCalculatorTests
 
 - (void)setUp {
-    appDelegate = [[UIApplication sharedApplication] delegate];
+    app_delegate = [[UIApplication sharedApplication] delegate];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     viewController = [storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
     calc_view = viewController.view;
@@ -44,7 +44,7 @@
 }
 
 - (void) testAppDelegate {
-    XCTAssertNotNil(appDelegate, @"Cannot find the application delegate");
+    XCTAssertNotNil(app_delegate, @"Cannot find the application delegate");
 }
 
 - (void) testAddition {
