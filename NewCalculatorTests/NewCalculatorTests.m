@@ -42,11 +42,6 @@
     
     // Put setup code here. This method is called before the invocation of each test method in the class.
     
-    app_delegate         = [[UIApplication sharedApplication] delegate];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    viewController = [storyboard instantiateViewControllerWithIdentifier:@"CalcViewController"];
-    calc_view            = viewController.view;
-    
 }
 
 - (void) testAppDelegate {
@@ -107,7 +102,7 @@
     }];
 }
 
-- (void) testAddition {
+- (void) testAdditionB {
     [viewController numPressed:[calc_view viewWithTag: 6]];  // 6
     [viewController operationPressed:[calc_view viewWithTag:13]];  // +
     [viewController numPressed:[calc_view viewWithTag: 2]];  // 2
