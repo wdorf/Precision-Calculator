@@ -19,5 +19,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *equationDisplay;
 
+- (IBAction)numPressed:(UIButton*)sender;
+- (IBAction)operationPressed:(UIButton *)sender;
+- (IBAction)equalPressed:(UIButton *)sender;
+
 @end
 

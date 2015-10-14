@@ -418,6 +418,7 @@
 				F11DA13C19DF6896004C7F5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F11DA13D19DF6896004C7F5B /* Build configuration list for PBXNativeTarget "NewCalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +427,7 @@
 				F11DA13F19DF6896004C7F5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
