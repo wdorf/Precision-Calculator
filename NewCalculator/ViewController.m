@@ -59,10 +59,7 @@ double memory = 0;
 }
 
 - (IBAction)clear {
-    self.isInTheMiddleOfEnteringANumber = NO;
-    self.userPressedDot = NO;
-    self.isEqualPressed = NO;
-    self.isOperatorPressed = NO;
+    [self settingBoolAttributesToNo];
     self.numericDisplay.text = @"0";
     self.operation = @"";
     if ([self.dynamicPrecisionMode isOn]) {
@@ -182,35 +179,35 @@ double memory = 0;
     self.isEqualPressed = YES;
     self.isOperatorPressed = NO;
 }
-
-- (IBAction)piPressed {
-    self.numericDisplay.text = @"3.141592";
+-(void)settingBoolAttributesToNo
+{
     self.isInTheMiddleOfEnteringANumber = NO;
     self.userPressedDot = NO;
     self.isEqualPressed = NO;
     self.isOperatorPressed = NO;
 }
 
+- (IBAction)piPressed {
+    self.numericDisplay.text = @"3.141592";
+    [self settingBoolAttributesToNo];
+}
+
 - (IBAction)memoryManager:(UIButton *)sender {
     if ([[sender currentTitle] isEqualToString:@"M+"]) {
         memory += [self.numericDisplay.text doubleValue];
-        self.isInTheMiddleOfEnteringANumber = NO;
-        self.userPressedDot = NO;
-        self.isEqualPressed = NO;
-        self.isOperatorPressed = NO;
-    }else if ([[sender currentTitle]isEqualToString:@"M-"]){
+        [self settingBoolAttributesToNo];
+    }
+    else if ([[sender currentTitle]isEqualToString:@"M-"])
+    {
         memory -= [self.numericDisplay.text doubleValue];
-        self.isInTheMiddleOfEnteringANumber = NO;
-        self.userPressedDot = NO;
-        self.isEqualPressed = NO;
-        self.isOperatorPressed = NO;
-    }else if ([[sender currentTitle] isEqualToString:@"MR"]){
+        [self settingBoolAttributesToNo];
+    }
+    else if ([[sender currentTitle] isEqualToString:@"MR"])
+    {
         self.numericDisplay.text = [NSString stringWithFormat:@"%1.6g",memory];
-        self.isInTheMiddleOfEnteringANumber = NO;
-        self.userPressedDot = NO;
-        self.isEqualPressed = NO;
-        self.isOperatorPressed = NO;
-    }else if ([[sender currentTitle] isEqualToString:@"MC"]){
+        [self settingBoolAttributesToNo];
+    }
+    else if ([[sender currentTitle] isEqualToString:@"MC"]){
         memory = 0;
     }
 }
@@ -322,10 +319,7 @@ double memory = 0;
 
 - (IBAction)atributeValueForX:(UIButton *)sender {
     if (!self.isSolvePressed) {
-        self.isInTheMiddleOfEnteringANumber = NO;
-        self.userPressedDot = NO;
-        self.isEqualPressed = NO;
-        self.isOperatorPressed = NO;
+        [self settingBoolAttributesToNo];
         self.numericDisplay.text = @"0";
         self.operation = @"";
         if ([self.brain.equation containsObject:@"x"]) {
